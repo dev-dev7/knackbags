@@ -1,0 +1,73 @@
+<script>!function(){var a=window.VL=window.VL||{};return a.instances=a.instances||{},a.invoked?void(window.console&&console.error&&console.error("VL snippet loaded twice.")):(a.invoked=!0,void(a.load=function(b,c,d){var e={};e.publicToken=b,e.config=c||{};var f=document.createElement("script");f.type="text/javascript",f.id="vrlps-js",f.defer=!0,f.src="https://app.viral-loops.com/client/vl/vl.min.js";var g=document.getElementsByTagName("script")[0];return g.parentNode.insertBefore(f,g),f.onload=function(){a.setup(e),a.instances[b]=e},e.identify=e.identify||function(a,b){e.afterLoad={identify:{userData:a,cb:b}}},e.pendingEvents=[],e.track=e.track||function(a,b){e.pendingEvents.push({event:a,cb:b})},e.pendingHooks=[],e.addHook=e.addHook||function(a,b){e.pendingHooks.push({name:a,cb:b})},e.$=e.$||function(a){e.pendingHooks.push({name:"ready",cb:a})},e}))}();var campaign=VL.load("r_2dDGnFQpiFVoXQZ0mEm4ggZK0",{autoLoadWidgets:!0});</script>
+<script>
+	//part of the guide found here:
+  //http://intercom.help/viral-loops/the-milestone-referral/technical-integration/how-to-use-a-custom-form-instead-of-the-form-widget
+
+
+  //capture the data and identify the user after the form is submitted
+  
+  function initVL(){
+	let $form =  $("#referral_contact_form");   
+    
+    $form.one( 'submit', function(e) {  
+      //prevent default form action
+      e.preventDefault();
+      
+      //get the form data
+      let data = $form.serializeArray();
+
+      let email = "";
+      let firstName = "";
+      let lastName = "";
+
+      console.log(data);
+
+        data.forEach(function(field){
+          if(field.name == "contact[email]"){
+			email = field.value;		
+          }
+
+          /**
+
+          if(field.name == "firstname"){
+			firstName = field.value;
+          }
+
+          if(field.name == "lastname"){
+			lastName = field.value;
+          }
+           **/
+        });
+
+      campaign.identify({
+          firstname: firstName,
+          lastname: lastName,
+          email: email
+      }, function() {
+          //optional callback
+          //you can hide the form here and show the widgets
+          //$("#form_container").hide();
+          //$("#widgets_container").show();
+        
+          $form.submit();
+      });
+  });
+
+  //when the campaign boots
+  campaign.addHook("boot", function() {
+    //if we have a logged in user
+    if (campaign.user && campaign.user.referralCode) {
+        //show the widgets
+        $("#progress_container").show();
+        $("#widgets_container").hide();
+    } else {
+        //show the form
+        $("#widgets_container").show();
+    }
+  });
+  }
+  
+  initVL();
+  
+  
+</script> 

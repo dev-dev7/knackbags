@@ -1,0 +1,146 @@
+{% stylesheet %}
+
+{% endstylesheet %}
+
+{% javascript %}
+
+{% endjavascript %}
+
+<style>
+    .knack-home-sticker-banner .btn, .knack-home-sticker-banner .arrow-link{
+        font-size: .8rem;
+        min-width: 5rem;
+    }
+
+    .knack-home-sticker-banner > .row {
+        background: #F3EBD8;
+    }
+
+    .knack-home-sticker-banner .intro-text{
+        color: #000000;
+        font-family: "Work Sans";
+        font-size: .7rem;
+        text-transform: uppercase;
+    }
+
+    .knack-home-sticker-banner .main-text{
+        color: #000000;
+        font-family: Lora;
+        font-size: 1.5rem;
+    }
+
+    .knack-home-sticker-banner .arrow-link{
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: "Work Sans";
+    }
+
+    .knack-home-sticker-banner .sticker{
+        bottom: -24px;
+        left: 1.5rem;
+        width: 48px;
+        height: 48px;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .knack-home-sticker-banner .sticker {
+            right: -36px;
+            left: inherit;
+            bottom: calc( 50% - 36px);
+            width: 72px;
+            height: 72px;
+        }
+    }
+</style>
+
+<div class="container-lg knack-home-sticker-banner">
+    <div class="row align-items-center no-gutters" style="background-image: url('{{ section.settings.bg_image | img_url: '1900x' }}');background-position: center center; background-size: cover">
+        <div class="col-12 col-md-3 position-relative">
+            <img class="w-100" src="{{section.settings.main_image | img_url: '400x400' }}"/>
+            <img  class="sticker position-absolute" src="{{section.settings.sticker_image | img_url: '78x78' }}"/>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="p-4 p-md-5 pt-5 pb-5">
+                <div class="intro-text mb-2">{{ section.settings.intro_text }}</div>
+                <div class="main-text mb-4">{{ section.settings.main_text }}</div>
+                <div class="d-flex flex-row align-items-center">
+                    <a class="btn btn-primary mr-4" href="{{ section.settings.primary_link_target }}">{{ section.settings.primary_link_label }}</a>
+                    <a class="arrow-link" href="{{ section.settings.secondary_link_target }}">{{ section.settings.secondary_link_label }} &#9654;</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            {% if section.settings.second_image %}
+            <img class="w-100" src="{{section.settings.second_image | img_url: '400x400' }}"/>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Sticker Banner",
+    "settings": [
+
+	  {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Main Image"
+      },
+        {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background Image"
+        },
+        {
+        "type": "image_picker",
+        "id": "sticker_image",
+        "label": "Sticker"
+        },
+        {
+        "type": "text",
+        "id": "intro_text",
+        "label": "Intro Text",
+        "default": "Intro Text"
+        },
+        {
+        "type": "richtext",
+        "id": "main_text",
+        "label": "Main Text",
+        "default": "<p>Main Text</p>"
+        },
+        {
+        "type": "text",
+        "id": "primary_link_label",
+        "label": "Button Label",
+        "default": "Optional button"
+        },
+        {
+        "type": "url",
+        "id": "primary_link_target",
+        "label": "Button Target"
+        },
+        {
+        "type": "text",
+        "id": "secondary_link_label",
+        "label": "Link Label",
+        "default": "Optional button"
+        },
+        {
+        "type": "url",
+        "id": "secondary_link_target",
+        "label": "Secondary Target"
+        },
+        {
+        "type": "image_picker",
+        "id": "second_image",
+        "label": "Second Image"
+        }
+    ],
+    "presets": [{
+      "name": "Sticker Banner",
+      "category": "Version 3"
+    }]
+  }
+{% endschema %}

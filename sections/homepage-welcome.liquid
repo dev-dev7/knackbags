@@ -1,0 +1,169 @@
+<!-- homepage-welcome -->
+
+<h2 class="featureTitle">{{section.settings.header}}</h2>
+
+<div class="featureWrap">
+  
+  {% for block in section.blocks %}
+  <div class="grid-container">
+    <div class="grid-x align-center">
+      <div class="cell medium-6 small-12 featureImage">
+        {% if block.settings.image != blank %}
+        	<a href="{{ block.settings.link }}">
+        		<img class="lazy" data-src="{{block.settings.image | img_url: '600x600'}}" width="600" height="600"/>
+        	</a>
+  			
+        {% endif %}
+        {% if block.settings.video_url != blank %}
+        	<div
+              data-section-id="{{ section.id }}"
+              data-section-type="video-section"
+              class="video-parent-section hero hero--{{ section.id }} hero--325px hero--mobile--auto"
+              data-aos="hero__animation">
+
+              <div class="hero__media hero__media--{{ section.id }}">
+
+                {% if block.settings.video_url contains 'youtube.com/watch' %}
+                  {%- assign video_id = block.settings.video_url | split: 'v=' -%}
+                  {%- assign video_id = video_id[1] | split: '&' | first -%}
+                  <div
+                    id="YouTubeVideo-{{ section.id }}"
+                    data-video-id="{{ video_id }}"></div>
+                {% endif %}
+
+                {% if block.settings.video_url contains 'youtu.be/' %}
+                  {%- assign video_id = block.settings.video_url | split: '.be/' -%}
+                  {%- assign video_id = video_id[1] | split: '&' | first -%}
+                  <div
+                    id="YouTubeVideo-{{ section.id }}"
+                    data-video-id="{{ video_id }}"></div>
+                {% endif %}
+
+                {% if block.settings.video_url contains 'vimeo.com' %}
+                  {%- assign video_id = block.settings.video_url | split: '.com/' -%}
+                  {%- assign video_id = video_id[1] | split: '/' | first -%}
+                  <div
+                    id="Vimeo-{{ section.id }}"
+                    data-video-id="{{ video_id }}"></div>
+                {% endif %}
+
+                {% if block.settings.video_url contains '.mp4' %}
+                  <video
+                    id="Mp4Video-{{ section.id }}"
+                    src="{{ block.settings.video_url }}"
+                    loop muted playsinline autoplay></video>
+                {% endif %}
+
+              </div>
+
+            </div>
+        {% endif %}         
+      </div>
+      <div class="cell medium-6 small-12 align-self-middle">
+        <div class="textBlock">
+          <p class="stars" style="display: none;">
+              <img src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/stars-quote.png?17906" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/stars-quote_2x_60dfd30f-11c7-4bc4-933e-612f92f7f508.png?17906 2x">
+            </p>
+          <h3>{{block.settings.title}}</h3>
+          <p>{{block.settings.description}}</p>
+          {% if block.settings.link_text != blank %}
+            <a href="{{ block.settings.link }}" class="btn-primary">{{ block.settings.link_text }}</a>
+          {% endif %}
+          {% if block.settings.link_text_2 != blank %}
+            <a href="{{ block.settings.link_2 }}" class="btn-primary">{{ block.settings.link_text_2 }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+ 
+
+{% schema %}
+  {
+    "name": "Homepage Features",
+	"class": "homepage-welcome",
+	"max_blocks": 10,
+    "settings": [
+                {
+                "type": "text",
+                "id": "header",
+                "label": "Header"
+                }		
+	],
+
+	"blocks": [
+		{
+          "type": "feature",
+          "name": "Common Feature",
+          "settings": [
+				{
+                "type": "text",
+                "id": "title",
+                "label": "Header",
+                "default": "Header"
+				},
+				{
+                "type": "textarea",
+                "id": "description",
+                "label": "Description",
+                "default": "Description"
+				},
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                },
+      {
+        "type": "video_url",
+        "id": "video_url",
+        "label": "Video link",
+        "accept": ["youtube", "vimeo"]
+      },                
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Button text 1",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button link 1",
+        "info": "Links to YouTube videos will be opened in a video player"
+      },                
+      {
+        "type": "text",
+        "id": "link_text_2",
+        "label": "Button text 2",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "link_2",
+        "label": "Button link 2",
+        "info": "Links to YouTube videos will be opened in a video player"
+      }
+          ]
+		}
+	],
+	"presets": [
+		{
+			"name": "Homepage Features",
+			"category": "Version 2",
+			"blocks": [
+				{ "type": "feature" },
+				{ "type": "feature" }
+			]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

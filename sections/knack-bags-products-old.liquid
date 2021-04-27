@@ -1,0 +1,235 @@
+<style>
+  .image{
+   	background-repeat: no-repeat; 
+  }
+</style>
+<div class="productDetailsWrap">
+  <div class="grid-container">
+  <div class="grid-x">
+    <div class="cell small-4">
+      <div class="productImage dark clearfix">
+        <div class="productColors">
+          <li><img src="{{section.settings.product_image_1 | img_url: '900x'}}"/></li>
+          <li><img src="{{section.settings.product_image_2 | img_url: '900x'}}"/></li>
+          <li><img src="{{section.settings.product_image_3 | img_url: '900x'}}"/></li>
+          <li><img src="{{section.settings.product_image_4 | img_url: '900x'}}"/></li>
+          <!--<li><img src="{{section.settings.product_image_5 | img_url: '900x'}}"/></li>-->
+        </div>  
+      </div>
+    </div>
+
+    <div class="cell small-8">
+      <div class="productDetails clearfix">
+        <h1>{{section.settings.product_heading}}</h1>
+        <p class="description">{{section.settings.product_description}}</p>
+        <div class="dimensions">
+            <div class="layout horizontal">
+              <span class="title">Unexpanded: {{section.settings.product_dimensions_closed}}</span>
+            </div>
+            <div class="layout horizontal">
+              <span class="title">Expanded: {{section.settings.product_dimensions_open}}</span>
+            </div>
+        </div>
+        <div class="slick-thumbs">
+		   <ul>
+            <li class="swatch">{{ 'black_swatch.jpg' | asset_img_url: '48x' | img_tag: 'Black', 'swatch' }}</li>
+            <li class="swatch">{{ 'gray_swatch.jpg' | asset_img_url: '48x' | img_tag: 'Gray', 'swatch' }}</li>
+            <li class="swatch">{{ 'green_swatch.jpg' | asset_img_url: '48x' | img_tag: 'Green', 'swatch' }}</li>
+            <li class="swatch">{{ 'orange_swatch.jpg' | asset_img_url: '48x' | img_tag: 'Orange', 'swatch' }}</li>
+            <li class="swatch">{{ 'denim_swatch.jpg' | asset_img_url: '48x' | img_tag: 'Denim', 'swatch' }}</li>
+          </ul>
+        </div>
+        <div class="layout">
+            <a class="btn-primary" href="{{section.settings.product_url}}">{{section.settings.product_button}}</a>
+        </div>
+        
+        <div class="iconWrap">
+          <div class="iconDetail">
+              <img src="{{section.settings.feature1_icon | img_url: '75x'}}"/>
+              <h4>{{section.settings.feature1_heading}}</h4>
+              <p>{{section.settings.feature1_description}}</p>
+          </div>
+            <div class="iconDetail">
+              <img src="{{section.settings.feature2_icon | img_url: '75x'}}"/>
+                <h4>{{section.settings.feature2_heading}}</h4>
+                <p>{{section.settings.feature2_description}}</p>
+            </div>
+            <div class="iconDetail">
+              <img src="{{section.settings.feature3_icon | img_url: '75x'}}"/>
+              <h4>{{section.settings.feature3_heading}}</h4>
+              <p>{{section.settings.feature3_description}}</p>
+           </div>
+          <div class="iconDetail">
+            <img src="{{section.settings.feature4_icon | img_url: '75x'}}"/>
+            <h4>{{section.settings.feature4_heading}}</h4>
+            <p>{{section.settings.feature4_description}}</p>
+          </div>  
+        </div>         
+        
+      </div>
+     
+    </div>
+  </div>
+</div>
+    </div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Products",
+	"class": "products",
+    "settings": [
+		{
+        "type": "header",
+        "content": "Product 1"
+      },
+	{
+        "type": "text",
+        "id": "product_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "product_description",
+        "label": "Description",
+		"default": "description"
+      },
+	{
+        "type": "text",
+        "id": "product_dimensions_closed",
+        "label": "Closed Dimensions",
+		"default": "0 x 0"
+      },
+	{
+        "type": "text",
+        "id": "product_dimensions_open",
+        "label": "Closed Dimensions",
+		"default": "0 x 0"
+      },
+	{
+        "type": "text",
+        "id": "product_button",
+        "label": "Button",
+		"default": "button"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_1",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_2",
+        "label": "Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_3",
+        "label": "Image 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_4",
+        "label": "Image 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_5",
+        "label": "Image 5"
+      },
+		{
+        "type": "url",
+        "id": "product_url",
+        "label": "Link"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature1_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature1_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature1_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature2_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature2_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature2_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature3_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature3_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature3_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature4_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature4_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature4_description",
+        "label": "Description",
+		"default": "description"
+      }
+	]
+  }
+{% endschema %}

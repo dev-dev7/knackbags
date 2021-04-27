@@ -1,0 +1,19 @@
+<div class="announcement announcement--closed_classdisabled">
+  {% if section.settings.announcement_link != blank %}
+    <a href="{{ section.settings.announcement_link }}" class="announcement__link" target="_blank">
+  {% endif %}
+
+    <span class="announcement__text" data-text="{{ section.settings.announcement_text | strip_html | handle }}" style="opacity: 1;">
+      {{ section.settings.announcement_text | strip_html }}
+    </span>
+
+  {% if section.settings.announcement_link != blank %}
+    </a>
+  {% endif %}
+<!--
+  <button type="button" class="text-link announcement__close">
+    {% include 'icon-close' %}
+    <span class="icon__fallback-text">{{ 'general.accessibility.close' | t | json }}</span>
+  </button>
+-->
+</div>

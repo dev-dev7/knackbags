@@ -1,0 +1,104 @@
+  <script>
+    /**
+    $(document).ready(function(){
+
+      $('#videoTabs .tab-label').click(function(event){
+        let selectedIndex = $('#videoTabs .tab-label').index(this);
+        $('#videoTabs .tab-label').removeClass('selected');
+        $('#videoTabs .tab-content').hide();
+        $('#videoTabs .tab-label:eq('+selectedIndex+')').addClass('selected');
+        $('#videoTabs .tab-content:eq('+selectedIndex+')').show();
+      });
+    });
+    **/
+  </script>
+
+      <div id="videoTabs" class="tabs">
+        <div class="tab-labels" style="display: none;">
+          <span class="tab-label selected">Packing for Him</span>
+          <span class="tab-label">Packing for Her</span>
+        </div>
+        <div class="tab-contents">
+          <div class="tab-content">
+            <div>
+            	<video src="{{section.settings.video_file_url}}" poster="{{section.settings.video_thumbnail_url}}" class="full-width" controls playsinline preload="none"></video>
+            </div>
+          </div>
+          <!--
+          <div class="tab-content"  style="display: none;">
+            <div class="video-wrapper">
+                {% if section.settings.video_url == blank %}
+                  <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% else %}
+                    {% if section.settings.video_url.type == "youtube" %}
+                      <iframe src="//www.youtube.com/embed/{{ section.settings.video_url.id }}?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                    {% if section.settings.video_url.type == "vimeo" %}
+                      <iframe src="//player.vimeo.com/video/{{ section.settings.video_url.id }}?color={{ settings.color_button | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                {% endif %}
+            </div>
+          </div>
+          <div class="tab-content" style="display: none;">
+            <div class="video-wrapper">
+                {% if section.settings.video_url_2 == blank %}
+                  <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% else %}
+                    {% if section.settings.video_url_2.type == "youtube" %}
+                      <iframe src="//www.youtube.com/embed/{{ section.settings.video_url_2.id }}?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                    {% if section.settings.video_url_2.type == "vimeo" %}
+                      <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_2.id }}?color={{ settings.color_button | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                {% endif %}
+            </div>
+          </div>
+			-->
+        </div>
+      </div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Video",
+    "settings": [
+	  {
+        "type": "url",
+        "id": "video_file_url",
+        "label": "Video URL"
+      },
+	  {
+        "type": "url",
+        "id": "video_thumbnail_url",
+        "label": "Video Thumbnail URL"
+      },
+      {
+        "type": "video_url",
+        "id": "video_url",
+        "label": "Video 1 link",
+        "accept": ["youtube", "vimeo"]
+      },
+        {
+        "type": "video_url",
+        "id": "video_url_2",
+        "label": "Video 2 link",
+        "accept": ["youtube", "vimeo"]
+      }, 
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Video",
+        "category": "Video"
+      }
+    ]
+  }
+{% endschema %}

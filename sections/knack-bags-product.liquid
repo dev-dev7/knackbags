@@ -1,0 +1,238 @@
+
+{% assign product = all_products[section.settings.product] %}
+
+<style>
+    .prodWrap .product-image{
+        margin-bottom: 32px;
+    }
+
+    .image{
+        background-repeat: no-repeat;
+    }
+</style>
+
+<div class="prodWrap medium">
+    <h2>{{section.settings.product_heading}}</h2>
+    <span class="price">{{section.settings.product_price}}</span>
+    <div class="prod-images">
+    {% for product_option in product.options_with_values %}
+      {% for value in product_option.values %}
+      	{% if value != "LIMITED EDITION COLOR - Burnt Orange" and value != "Loden Green" %}
+            {% assign image = value | split: ' ' | last | handle | append: '_angle.jpg' %}
+            <div class="product-image" style="display: none;"><a class="shop-now-link" href="{{product.url}}">{{ 'md_knack_' | append: image | file_img_url: '200x300' | img_tag: '', 'no-hover' }}<img class="hover" src="{{section.settings.product_image_1_hover | img_url: '200x300'}}"/></a></div>
+      	{% endif %}
+      {% endfor %}
+
+      {% endfor %}
+    <ul class="slick-dots">
+      {% for product_option in product.options_with_values %}
+        {% for value in product_option.values %}
+          {% if value != "LIMITED EDITION COLOR - Burnt Orange" and value != "Loden Green" %}
+            {% assign image = value | append: '_swatch' | split: ' ' | last | handle | append: '.jpg' %}
+            <li class="swatch" data="{{value}}">{{ image | asset_img_url: '24x' | img_tag: '', 'swatch' }}</li>
+      	  {% endif %}
+        {% endfor %}
+
+      {% endfor %}
+    </ul>
+    </div>
+    <a class="shop-now-link btn-primary" href="{{product.url}}">{{section.settings.product_button}}</a>
+    <div class="shipping">
+      <p>{{section.settings.free_shipping}}</p>
+      <p>{{section.settings.fast_shipping}}</p>
+    </div>
+    <div class="prodDetails">
+      <p class="description">{{section.settings.product_description}}</p>
+     <!-- <span class="title">Unexpanded: {{section.settings.product_dimensions_closed}}</span>
+      <span class="title">Expanded: {{section.settings.product_dimensions_open}}</span> -->
+    </div>
+    <!--<div class="iconWrap">
+      <div class="grid-x">
+        <div class="cell medium-3 small-6">
+          <div class="iconDetail">
+              <img src="{{section.settings.feature1_icon | img_url: '60x'}}"/>
+              <h5>{{section.settings.feature1_heading}}</h5>
+              <p>{{section.settings.feature1_description}}</p>
+          </div>
+        </div>
+        <div class="cell medium-3 small-6">
+          <div class="iconDetail">
+            <img src="{{section.settings.feature2_icon | img_url: '60x'}}"/>
+              <h5>{{section.settings.feature2_heading}}</h5>
+              <p>{{section.settings.feature2_description}}</p>
+          </div>
+        </div>
+        <div class="cell medium-3 small-6">
+          <div class="iconDetail">
+            <img src="{{section.settings.feature3_icon | img_url: '60x'}}"/>
+            <h5>{{section.settings.feature3_heading}}</h5>
+            <p>{{section.settings.feature3_description}}</p>
+         </div>
+        </div>
+        <div class="cell medium-3 small-6">
+          <div class="iconDetail">
+            <img src="{{section.settings.feature4_icon | img_url: '60x'}}"/>
+            <h5>{{section.settings.feature4_heading}}</h5>
+            <p>{{section.settings.feature4_description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>-->
+</div>
+
+{% schema %}
+  {
+    "name": "Medium",
+	"class": "products",
+    "settings": [
+	{
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+	{
+        "type": "text",
+        "id": "product_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+	{
+        "type": "text",
+        "id": "product_button",
+        "label": "Button Text",
+		"default": "button"
+      },
+		{
+        "type": "text",
+        "id": "product_description",
+        "label": "Description",
+		"default": "description"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_1_hover",
+        "label": "Hover Image"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature1_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature1_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature1_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature2_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature2_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature2_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature3_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature3_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature3_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature4_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature4_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature4_description",
+        "label": "Description",
+		"default": "description"
+      }
+	]
+  }
+{% endschema %}
+
+<script>
+
+    window.product = window.product || {};
+
+    $(document).ready(function(){
+
+        window.product.medium = {
+            variants: {
+                {% for variant in product.variants %}
+                    '{{ variant.option1 }}': '{{ variant.id }}',
+                {% endfor %}
+            }
+        }
+
+
+        $('.prodWrap.medium .prod-images > .product-image:eq(0)').show();
+
+        $('.prodHori .prodWrap.medium .prod-images .slick-dots li').click(function(event){
+            $('.prodHori .prodWrap.medium .prod-images .slick-dots li').removeClass("slick-active");
+            $(this).addClass("slick-active");
+            $('.prodWrap.medium .prod-images > .product-image').hide();
+            $('.prodWrap.medium .prod-images > .product-image:eq('+$(this).index()+')').show();
+
+            variantId = window.product.medium.variants[$(this).attr('data')];
+
+            $('.prodWrap.medium .shop-now-link').attr('href', '{{product.url}}?variant=' + variantId) ;
+        });
+    });
+
+
+</script>

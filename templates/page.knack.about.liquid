@@ -1,0 +1,65 @@
+{% comment %}
+ABOUT
+<!-- landing -->
+<style>
+  div#shopify-section-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  body .custom-header{
+ 	position: absolute; 
+  }
+  
+  body .page-content{
+    padding-top: 0px;
+  }
+  .header-layout{
+   	max-width: 1300px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  .site-footer > .page-width{
+    max-width: 1300px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  .main-content > .page-width{
+   	max-width: 100%; 
+    padding: 0;
+  }  
+</style>
+{% endcomment %}
+<div class="page-width page-content">
+
+  {% include 'breadcrumbs' %}
+  
+  {% section 'knack-about-slideshow' %}
+  
+  {% section 'story-details' %}
+  
+  {% section 'knack-about-staff' %}
+  
+  <!--{% section 'knack-about-content-3' %}-->
+  
+
+  <div class="grid" style="display: none !important">
+    <div class="grid__item medium-up--three-quarters medium-up--push-one-eighth">
+
+      <header class="section-header">
+        <h1 class="section-header__title">{{ page.title }}</h1>
+      </header>
+
+      <div class="rte rte--nomargin">
+        {{ page.content }}
+      </div>
+
+    </div>
+  </div>
+
+</div>

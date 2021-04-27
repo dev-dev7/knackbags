@@ -1,0 +1,132 @@
+<!-- knack-home-value-proposition -->
+<div style="position: relative;">
+  <div class="grid-container">
+    <div class="grid-x align-center value-prop">
+      <div class="cell medium-6 small-12" style="background: #fff;">
+        <video id="featureAnimatedGif" class="w-100 lazy" autoplay muted loop playsinline preload="none">
+          <source type="video/mp4">
+        </video>
+          {% comment %}
+        {% if section.settings.video_url != blank %}
+        	<div
+              data-section-id="{{ section.id }}"
+              data-section-type="video-section"
+              class="video-parent-section hero hero--{{ section.id }} hero--550px hero--mobile--auto"
+              data-aos="hero__animation">
+
+              <div class="hero__media hero__media--{{ section.id }}">
+
+                {% if section.settings.video_url contains 'youtube.com/watch' %}
+                  {%- assign video_id = section.settings.video_url | split: 'v=' -%}
+                  {%- assign video_id = video_id[1] | split: '&' | first -%}
+                  <div
+                    id="YouTubeVideo-{{ section.id }}"
+                    data-video-id="{{ video_id }}"></div>
+                {% endif %}
+
+                {% if section.settings.video_url contains 'youtu.be/' %}
+                  {%- assign video_id = section.settings.video_url | split: '.be/' -%}
+                  {%- assign video_id = video_id[1] | split: '&' | first -%}
+                  <div
+                    id="YouTubeVideo-{{ section.id }}"
+                    data-video-id="{{ video_id }}"></div>
+                {% endif %}
+
+                {% if section.settings.video_url contains 'vimeo.com' %}
+                  {%- assign video_id = section.settings.video_url | split: '.com/' -%}
+                  {%- assign video_id = video_id[1] | split: '/' | first -%}
+                  <div
+                    id="Vimeo-{{ section.id }}"
+                    data-video-id="{{ video_id }}"></div>
+                {% endif %}
+
+                {% if section.settings.video_url contains '.mp4' %}
+                  <video
+                    id="Mp4Video-{{ section.id }}"
+                    src="{{ section.settings.video_url }}"
+                    loop muted playsinline autoplay></video>
+                {% endif %}
+
+              </div>
+
+            </div>
+        {% else %}
+  			<img class="lazy" data-src="{{section.settings.image | img_url: '600x'}}" width="600"/>
+        {% endif %}   
+        {% endcomment %}
+      </div>
+      <div class="cell medium-6 small-12 vp-text">
+        <div class="layout horizontal center full-height">
+          <div>
+            <div class="stars">
+              <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/stars-quote.png?17906" data-srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/stars-quote_2x_60dfd30f-11c7-4bc4-933e-612f92f7f508.png?17906 2x">
+            </div>
+            <h2>{{section.settings.header}}</h2>
+            <ul>
+                {% for block in section.blocks %}
+              <li> {{block.settings.text}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if section.settings.section_link_url %}
+  <a style="z-index: 1; left: 0; top: 0; width: 100%; height: 100%; position: absolute;" href="{{ section.settings.section_link_url }}"></a>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Value Proposition",
+	"max_blocks": 10,
+    "settings": [
+	  {
+      	"type": "text",
+      	"id": "header",
+      	"label": "Header",
+		"default": "Value Proposition"
+      },	
+	  {
+      	"type": "image_picker",
+        "id": "image",
+       	"label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "video_url",
+        "label": "Video link"
+      },
+	  {
+        "type": "url",
+        "id": "section_link_url",
+        "label": "Section Link Url"
+      }
+],
+"blocks": [
+		{
+          "type": "bullet",
+          "name": "Bullet",
+          "settings": [
+				{
+                "type": "text",
+                "id": "text",
+                "label": "Text",
+                "default": "Bullet Text"
+				}
+          ]
+		}
+	],
+"presets": [{
+      "name": "Value Proposition",
+      "category": "Version 2"
+    }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

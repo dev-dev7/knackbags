@@ -1,0 +1,19 @@
+<div class="headerImage">
+  <img src="{{section.settings.header_image | img_url: 'master'}}"/>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Header Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "header_image",
+        "label": "Header Image"
+      }		
+]
+  }
+{% endschema %}
+

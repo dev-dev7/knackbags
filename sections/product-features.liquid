@@ -1,0 +1,114 @@
+
+<div class="productFeatures">
+  <div class="grid-x">
+    <div class="cell medium-4 small-6">
+      <img src="{{section.settings.feature_image_1 | img_url: '400x'}}"/>
+      <h4>{{section.settings.feature_text_1}}</h4>
+    </div>
+    <div class="cell medium-4 small-6">
+      <img src="{{section.settings.feature_image_2 | img_url: '400x'}}"/>
+      <h4>{{section.settings.feature_text_2}}</h4>
+    </div>
+    <div class="cell medium-4 small-6">
+	  <img src="{{section.settings.feature_image_3 | img_url: '400x'}}"/>
+      <h4>{{section.settings.feature_text_3}}</h4>
+    </div>
+    <div class="cell medium-4 small-6">
+	  <img src="{{section.settings.feature_image_4 | img_url: '400x'}}"/>
+      <h4>{{section.settings.feature_text_4}}</h4>
+    </div>
+    <div class="cell medium-4 small-6">
+      <img src="{{section.settings.feature_image_5 | img_url: '400x'}}"/>
+      <h4>{{section.settings.feature_text_5}}</h4>
+    </div>
+    <div class="cell medium-4 small-6">
+      <img src="{{section.settings.feature_image_6 | img_url: '400x'}}"/>
+      <h4>{{section.settings.feature_text_6}}</h4>
+    </div>
+  </div>
+</div>
+        
+{% schema %}
+  {
+    "name": "Product Features",
+    "settings": [
+      {
+        "type": "text",
+        "id": "feature_title",
+        "label": "Heading"
+      },
+	  {
+        "type": "text",
+        "id": "feature_text_1",
+        "label": "Feature Label"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature_image_1",
+        "label": "Feature Image 1"
+      },
+      {
+        "type": "text",
+        "id": "feature_text_2",
+        "label": "Feature Label"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature_image_2",
+        "label": "Feature Image 2"
+      },
+      {
+        "type": "text",
+        "id": "feature_text_3",
+        "label": "Feature Label"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature_image_3",
+        "label": "Feature Image 3"
+      },
+      {
+        "type": "text",
+        "id": "feature_text_4",
+        "label": "Feature Label"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature_image_4",
+        "label": "Feature Image 4"
+      },
+      {
+        "type": "text",
+        "id": "feature_text_5",
+        "label": "Feature Label"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature_image_5",
+        "label": "Feature Image 5"
+      },
+      {
+        "type": "text",
+        "id": "feature_text_6",
+        "label": "Feature Label"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature_image_6",
+        "label": "Feature Image 6"
+      }
+
+
+
+
+
+
+    ],
+    "presets": [
+      {
+        "name": "Block Images",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

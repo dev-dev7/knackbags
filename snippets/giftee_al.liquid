@@ -1,0 +1,16 @@
+{% if product.type == 'Gift Card' %}
+		            <div style='margin-bottom: 3px;'>
+		                <div class="row">
+                            <label for='Recipient Email'>Recipient's Email</label>
+                            <input type='email' id='rgc-email' name='properties[Recipient Email]' required style="width: 300px;">
+                        </div>
+                        <div class="row">
+                            <label for='Recipient Name'>Recipient's Name</label>
+                            <input type='text' id='rgc-name' name='properties[Recipient Name]' style="width: 300px;">
+                        </div>
+                      <div class="row">
+                         <label for='Recipient Note'>Recipient's Note</label>
+                        <textarea id='rgc-note' name='properties[Recipient Note]' style="width: 300px;"></textarea>
+                       </div>
+                   </div>
+                  {% endif %}

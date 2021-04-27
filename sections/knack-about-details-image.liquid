@@ -1,0 +1,24 @@
+<div class="detailsImage">
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell small-12">
+  		<img src="{{section.settings.header_image | img_url: 'master'}}"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Details Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "header_image",
+        "label": "Header Image"
+      }		
+]
+  }
+{% endschema %}

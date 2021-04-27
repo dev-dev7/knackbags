@@ -1,0 +1,181 @@
+{% stylesheet %}
+
+{% endstylesheet %}
+
+{% javascript %}
+
+{% endjavascript %}
+<!-- knack-home-split-banner -->
+<div class="grid-container split-home-banner">
+    <div class="grid-x align-center mb-3 {% if section.settings.flip %} flex-dir-row-reverse {% endif %}">
+      <div class="cell medium-6 small-12 vp-text text-center" style="position: relative;">
+        <img class="full-width" src="{{section.settings.left_image | img_url: '600x600', format: 'pjpg' }}" data-src="{{section.settings.left_image | img_url: 'master', format: 'pjpg' }}" style="opacity: 0;"/>
+        <div style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;">
+            <img class="full-width" src="{{section.settings.left_image | img_url: '600x600', format: 'pjpg' }}" width="600" height="600"/>
+        </div>
+        <div style="position: absolute; width: 100%; height: 100%; left: 0; top: 0; {% if section.settings.show_mask %} background: rgba(0,0,0,.2); {% endif %} text-decoration: none; color: #fff;" href="{{ section.settings.link }}">
+          <div class="layout horizontal center full-width full-height" >
+
+            <div class="flex">
+              <div class="layout vertical left full-width full-height">
+                {% unless section.settings.title == blank %}
+                    <h2 class="h1 hero__title">
+                      <div class="animation-cropper">
+                        <div class="animation-contents {% if section.settings.dark_font %} font-dark {% else %} font-white {% endif %}">
+                      		{{ section.settings.title | newline_to_br }}
+                        </div>
+                      </div>
+                    </h2>
+                {% endunless %}
+                {% unless section.settings.caption == blank %}
+                  <div class="hero__caption">
+                    <div class="animation-cropper">
+                      <div class="animation-contents lora {% if section.settings.dark_font %} font-dark {% else %} font-white {% endif %}">
+                        {{ section.settings.caption | newline_to_br }}
+                        </div>
+                    </div>
+                  </div>
+                {% endunless %}
+                {% unless section.settings.link_text == blank %}
+                  <div>
+                    <div class="animation-cropper">
+                      <div class="animation-contents">
+                        <a href="{{ section.settings.link }}" class="btn-outline {% if section.settings.dark_font %} btn-color-dark {% else %} btn-color-white {% endif %}" style="position: relative; z-index: 2">
+                          {{ section.settings.link_text }}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {% endunless %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <a style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" href="{{ section.settings.link }}"></a>
+      </div>
+      <div class="cell medium-6 small-12" style="background: #fff; position: relative;">
+        <div class="content full-height full-width">
+            <img id="splitHeroImage" width="600" height="600" class="full-width" src="{{section.settings.image_1 | img_url: '900x900', format: 'pjpg' }}" data-src-1="{{section.settings.image_1 | img_url: '900x900', format: 'pjpg' }}" data-src-2="{{section.settings.image_2 | img_url: '900x900', format: 'pjpg' }}" data-src-3="{{section.settings.image_3 | img_url: '900x900', format: 'pjpg' }}" data-src-4="{{section.settings.image_4 | img_url: '900x900', format: 'pjpg' }}"/>
+        </div>
+        <a style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" href="{{ section.settings.link }}"></a>
+      </div>
+
+  </div>
+</div>
+
+<script>
+        var homeHeroCurrentIndex = Math.floor(Math.random() * Math.floor({{section.settings.rotator_size}})) + 1;
+
+        function initSplitHomeHeroImage(heroIndex){
+
+            var splitHomeHero = document.getElementById("splitHeroImage");
+
+            splitHomeHero.setAttribute("src",splitHomeHero.getAttribute("data-src-" + heroIndex));
+
+          }
+          initSplitHomeHeroImage(homeHeroCurrentIndex);
+  
+  window.addEventListener('load', function() { 
+  	setInterval(function(){
+      homeHeroCurrentIndex++;
+      if(homeHeroCurrentIndex > {{section.settings.rotator_size}}){
+         homeHeroCurrentIndex = 1;
+         }
+         initSplitHomeHeroImage(homeHeroCurrentIndex);
+    }, 2000);
+
+  });
+</script>
+<style>
+    .split-home-banner .animation-contents{
+        padding-left: 0 !important;
+    }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Split Image Banner",
+    "class": "home-responsive-image-banner",
+    "settings": [
+    {
+        "type": "range",
+        "id": "rotator_size",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "label": "Slide Count",
+        "default": 1
+    },
+	  {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_3",
+        "label": "Image 3"
+      },
+	  {
+        "type": "image_picker",
+        "id": "image_4",
+        "label": "Image 4"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Heading",
+        "default": "This is a heading."
+      },
+{
+        "type": "textarea",
+        "id": "caption",
+        "label": "Caption",
+        "default": "This is a caption."
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Button text",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button link"
+      },{
+           "type":      "checkbox",
+           "id":        "show_mask",
+           "label":     "Show Mask",
+           "default":   true
+        },
+        {
+        "type":      "checkbox",
+        "id":        "dark_font",
+        "label":     "Dark Font",
+        "default":   false
+        },
+        {
+            "type": "image_picker",
+            "id": "left_image",
+            "label": "Left Image"
+          },{
+                      "type":      "checkbox",
+                      "id":        "flip",
+                      "label":     "Flip",
+                      "default":   false
+                   }
+    ],
+    "presets": [{
+      "name": "Split Image Banner",
+      "category": "Version 2"
+    }]
+  }
+{% endschema %}

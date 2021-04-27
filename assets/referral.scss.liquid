@@ -1,0 +1,1127 @@
+html {
+ padding-bottom: 0 !important; 
+}
+body {
+ 	height: 100%; 
+}
+#widgets_container, .widgets_container {
+  text-align: center;
+  .logo {
+   	background: rgba(0,0,0, 1);
+    width: 100%;
+    padding: 4px 0 7px;
+    top: 0;
+    text-align: center;
+    z-index: 10;
+    img {
+      max-width: 200px;
+      top: 3px;
+      position: relative;
+    }
+  }
+  h1 {
+    font-size: 30px;
+    line-height: 32px;
+    font-weight: 600;
+    color: #f6a800;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+    padding: 10px 0;
+  }
+  p {
+    font-size: 19px;
+    line-height: 26px;
+    font-weight: 400;
+    max-width: 840px;
+    padding: 0 15px 10px;
+    margin: 0 auto;
+    letter-spacing: 0;
+  }
+  .key {
+   	width: 34px; 
+  }
+  span {
+    font-family: Work Sans, "HelveticaNeue","Helvetica Neue",sans-serif;
+   	text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    padding: 0 0 5px 0;
+    color: #555;
+  }
+  .member {
+   	width: 100%;
+    text-align: center;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    color: #4B4B4B;    
+    padding: 10px 10px 0;
+    a {
+      text-decoration: underline;
+      &:hover {
+      	color: #f6a800;
+      }
+    }
+  }
+  em {
+  font-size: 16px;
+  padding: 20px 0 15px;
+  display: block;
+  }
+  .sharefooter-classic {
+   	display: none !important; 
+  }
+  .splitBanner {
+	position: relative;
+    .bannerMobile {
+     	display: none; 
+    }
+
+  }
+  .input-group-field {
+      color: #555555;
+      height: 45px;
+      color: #555555;
+      border: none;
+      height: 45px;
+      border: 1px #333 solid;
+      width: 95%;
+      font-weight: 400; 
+      padding: 8px 10px;
+      font-size: 16px;
+    &.error {
+     	font-weight: 400; 
+      padding: 8px 10px;
+      font-size: 16px;
+      color: red;
+    }
+  }  
+  input[type="submit"] {
+     
+    height: 45px;
+    margin-left: -4px;
+    vertical-align: middle;
+    color: #FFF;
+    text-transform: uppercase;
+    background: #f6a800;
+    font-family: Work Sans, serif !important;
+    padding: 0 20px;
+    font-size: 14px;
+    &:hover {
+      background: lighten(#f6a800, 10%);
+    }    
+  }
+
+  .password-form, .password-page__message, .password-page__signup-form {
+      max-width: 775px;
+      margin: 0 auto;
+  } 
+  label.error {
+      margin-bottom: 8px;
+      color: red;
+      border: none;
+      background: white;
+      padding: 0 0 0 10px;
+      font-weight: bold;
+      text-align: left;
+    font-size: 10px;
+  }  
+  .formWrap {
+    .header {
+     	display: none !important; 
+    }
+  }
+  .password-page__signup-form {
+      padding: 0 25px;
+  }
+
+
+}
+
+#vlCopyInput{
+    background: #fff;
+    padding: 0 15px;
+    margin: 0 auto;
+    font-size: 12px;
+    border-color: #968c83;
+    height: 35px;
+
+    &:hover{
+        cursor: pointer;
+    }
+  ::selection {
+    background:#f6a800;
+    color: #FFF;
+  }  
+}
+.agree {
+  font-size: 14px !important;
+  line-height: 18px !important;
+  color: #4B4B4B;  
+  a {
+   	text-decoration: underline; 
+    &:hover {
+      color: #000;
+      text-decoration: underline;
+    }    
+  }
+}
+#progress_container {
+	background-image: url({{ 'referral_bg.jpg' | asset_url }});
+ 	width: 100%;
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed; 
+  	h3 {
+     	font-size: 23px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin:20px 0 0 0;
+    }
+  p {
+   	font-size: 16px; 
+    margin:0;
+  }
+  
+  .tab-label {
+    font-family: Work Sans, "HelveticaNeue","Helvetica Neue",sans-serif;
+   	text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    padding: 0 0 5px 0;
+    color: #555;
+  }
+
+  	.contentLeft {
+     	background: rgba(250,250,250, .9);
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 30px 20px;
+        max-height: 100vh;
+        position: fixed;
+        left: 0;
+        overflow: auto;
+      .logo {
+        padding: 5px 0;
+         img {
+          	max-width: 230px; 
+         }
+      }
+        h1 {
+          font-size: 28px;
+          margin: 18px 0;
+          font-weight: bold;
+        }
+      .social {
+        padding: 20px 0 5px;
+        
+       	a {
+          color: #303131;
+          font-size: 18px;
+          border: 2px #303131 solid;
+          border-radius: 50%;
+          padding: 5px;
+          width: 45px;
+          display: inline-block;
+          height: 45px;
+          vertical-align: middle;
+          line-height: 30px;
+          margin: 0 5px;
+          transition: all 0.5s ease;
+          &:hover {
+           	color: #f4a71d;
+            border-color: #f4a71d;
+          }
+        }
+      }
+      .howItWorks {
+       	margin-top: 20px;
+        .title {
+         	font-size: 20px;
+          text-transform: uppercase;
+        }
+      }
+          .earned {
+     	margin-top: -70px; 
+    }  
+     .mobileScrollWrap {
+      	position: relative;
+       #milestoneWidget {
+           
+       }
+
+     }
+
+      
+    }
+
+}
+
+      .formWrap {
+        display: table;
+        max-width: 320px;
+        margin: 35px auto 0;
+        input {
+         	border-right: 0;
+			position: relative;
+			width: 100%;
+            display: table-cell;
+        }
+        .input-group-button {
+    		width: 1%;
+    		vertical-align: middle;
+            display: table-cell; 
+          transition: all 0.5s ease;
+            button {
+              background: #f6a800;
+              color: #FFF;
+              padding: 0 10px;
+              height: 35px;
+              vertical-align: middle;
+              border: 1px #968c83 solid;
+              border-left: 0;
+              transition: all 0.5s ease;
+              &:hover {
+               	 background: lighten(#f6a800, 15%);
+              }
+            }          
+		}
+
+      }
+a.rules {
+  font-size: 14px;
+  color: #4B4B4B;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  display: inline-block;
+  &:hover {
+   	color: #000;
+    text-decoration: underline;
+  }
+}
+
+.referral {
+    text-align: center;
+	font-size: 30px; 
+    padding: 16px 0;
+    font-family: Work Sans, "HelveticaNeue", "Helvetica Neue", sans-serif;
+  #referralCount {
+      background: #f6a800;
+      color: #fff;
+      padding: 15px;
+      display: inline-block;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      border: 0 solid #f7f7f7;
+      margin-bottom: 10px;  
+  }
+  p {
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 30px;
+
+  }  
+}
+#fss-tabs {
+  max-width: 1400px;
+ margin: 20px auto; 
+}
+.services-tabs {
+    margin: 0 auto;
+    position: relative;
+  display: flex;
+counter-reset: index 0;
+}
+.progress-filler {
+    height: 6px;
+    background: #f7f7f7;
+    border-radius: 4px;
+    position: relative;
+    width: 84%;
+    top: 3px;
+}
+#progress_container .contentLeft {
+    text-align: center;
+}
+.gift-wrapper {
+    max-width: 120px;
+    margin: 0 auto;
+}
+.stepgift {
+    position: relative;
+    top: 23px;
+    text-align: center;
+}
+
+.services-tabs {
+    margin: 0 auto;
+    position: relative;
+}
+.services-tabs li {
+    display: inline-block;
+    vertical-align: top;
+    width: 34%;
+    position: relative;
+    z-index: 2;
+}
+.fss-step-number {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: block;
+}
+
+.fss-step-number em {
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    color: #bbb;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 30px;
+    text-align: center;
+    z-index: 2;
+}
+.fss-step-number em, .fss-step-number strong {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    transition: all .2s;
+    bottom: 0;
+}
+
+.progress-indicator {
+    display: block;
+    width: 0;
+    height: 6px;
+    background: #2f2bad;
+    border-radius: 4px;
+    transition: width 2s;
+}
+
+#videoTabs {
+ 	margin-top: 25px; 
+}
+.videoOverlay {
+ 	position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  margin: auto;
+  background: rgba(0,0,0,.4);
+}
+
+.videoWrapper {
+    position: absolute;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    z-index: 1;
+}
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+ width: 100vw;
+ height: 100vh;
+}
+/* Hide scroll bar */
+
+html.remodal-is-locked {
+  overflow: hidden;
+
+  -ms-touch-action: none;
+  touch-action: none;
+}
+
+/* Anti FOUC */
+
+.remodal,
+[data-remodal-id] {
+  display: none;
+}
+
+/* Necessary styles of the overlay */
+
+.remodal-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: -5000px;
+  right: -5000px;
+  bottom: -5000px;
+  left: -5000px;
+
+  display: none;
+}
+
+/* Necessary styles of the wrapper */
+
+.remodal-wrapper {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: none;
+  overflow: auto;
+
+  text-align: center;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.remodal-wrapper:after {
+  display: inline-block;
+
+  height: 100%;
+  margin-left: -0.05em;
+
+  content: "";
+}
+
+/* Fix iPad, iPhone glitches */
+
+.remodal-overlay,
+.remodal-wrapper {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Necessary styles of the modal dialog */
+
+.remodal {
+  position: relative;
+
+  outline: none;
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.remodal-is-initialized {
+  /* Disable Anti-FOUC */
+  display: inline-block;
+}
+
+.remodal-bg.remodal-is-opening,
+.remodal-bg.remodal-is-opened {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+
+/* Default theme styles of the overlay */
+
+.remodal-overlay {
+  background: rgba(43, 46, 56, 0.9);
+}
+
+.remodal-overlay.remodal-is-opening,
+.remodal-overlay.remodal-is-closing {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.remodal-overlay.remodal-is-opening {
+  -webkit-animation-name: remodal-overlay-opening-keyframes;
+  animation-name: remodal-overlay-opening-keyframes;
+}
+
+.remodal-overlay.remodal-is-closing {
+  -webkit-animation-name: remodal-overlay-closing-keyframes;
+  animation-name: remodal-overlay-closing-keyframes;
+}
+
+/* Default theme styles of the wrapper */
+
+.remodal-wrapper {
+  padding: 10px 10px 0;
+}
+
+/* Default theme styles of the modal dialog */
+
+.remodal {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 35px;
+
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  color: #2b2e38;
+  background: #fff;
+}
+
+.remodal.remodal-is-opening,
+.remodal.remodal-is-closing {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.remodal.remodal-is-opening {
+  -webkit-animation-name: remodal-opening-keyframes;
+  animation-name: remodal-opening-keyframes;
+}
+
+.remodal.remodal-is-closing {
+  -webkit-animation-name: remodal-closing-keyframes;
+  animation-name: remodal-closing-keyframes;
+}
+
+/* Vertical align of the modal dialog */
+
+.remodal,
+.remodal-wrapper:after {
+  vertical-align: middle;
+}
+
+/* Close button */
+
+.remodal-close {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+  overflow: visible;
+
+  width: 35px;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+
+  cursor: pointer;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+  text-decoration: none;
+
+  color: #95979c;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.remodal-close:hover,
+.remodal-close:focus {
+  color: #2b2e38;
+}
+
+.remodal-close:before {
+  font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif !important;
+  font-size: 25px;
+  line-height: 35px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+
+  width: 35px;
+
+  content: "\00d7";
+  text-align: center;
+}
+
+/* Dialog buttons */
+
+.remodal-confirm,
+.remodal-cancel {
+  font: inherit;
+
+  display: inline-block;
+  overflow: visible;
+
+  min-width: 110px;
+  margin: 0;
+  padding: 12px 0;
+
+  cursor: pointer;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+
+  border: 0;
+  outline: 0;
+}
+
+.remodal-confirm {
+  color: #fff;
+  background: #81c784;
+}
+
+.remodal-confirm:hover,
+.remodal-confirm:focus {
+  background: #66bb6a;
+}
+
+.remodal-cancel {
+  color: #fff;
+  background: #e57373;
+}
+
+.remodal-cancel:hover,
+.remodal-cancel:focus {
+  background: #ef5350;
+}
+
+/* Remove inner padding and border in Firefox 4+ for the button tag. */
+
+.remodal-confirm::-moz-focus-inner,
+.remodal-cancel::-moz-focus-inner,
+.remodal-close::-moz-focus-inner {
+  padding: 0;
+
+  border: 0;
+}
+
+/* Keyframes
+   ========================================================================== */
+
+@-webkit-keyframes remodal-opening-keyframes {
+  from {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: none;
+    transform: none;
+
+    opacity: 1;
+
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes remodal-opening-keyframes {
+  from {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: none;
+    transform: none;
+
+    opacity: 1;
+
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+
+@-webkit-keyframes remodal-closing-keyframes {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+
+    opacity: 0;
+
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes remodal-closing-keyframes {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+
+    opacity: 0;
+
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+
+@-webkit-keyframes remodal-overlay-opening-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes remodal-overlay-opening-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes remodal-overlay-closing-keyframes {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes remodal-overlay-closing-keyframes {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Media queries
+   ========================================================================== */
+
+@media only screen and (min-width: 641px) {
+  .remodal {
+    max-width: 700px;
+  }
+}
+
+/* IE8
+   ========================================================================== */
+
+.lt-ie9 .remodal-overlay {
+  background: #2b2e38;
+}
+
+.lt-ie9 .remodal {
+  width: 700px;
+}
+
+@media only screen and (max-width: 640px) {
+
+  #widgets_container, .widgets_container {
+    h1 {
+     	padding: 3px 0; 
+    }
+    p {
+      padding: 0 20px 10px;
+    }
+    .logo {
+    	img {
+         	max-width: 170px; 
+        }
+    }
+    .splitBanner {
+      position: relative;
+      .banner {
+          display: none; 
+      }
+      .bannerMobile {
+          display: block; 
+      }
+    }  
+    .input-group-field {
+        margin-bottom: 10px; 
+      width: 100%;
+    }
+.layout.horizontal, .layout.horizontal-reverse {
+ 	display: block; 
+}
+      button, input[type="submit"] {
+        border: none;
+        width: 100%; 
+        margin: 10px 0 0 0;
+      } 
+  }
+
+  #widgets_container, .widgets_container {
+    .logo {
+    	img {
+         	max-width: 170px; 
+        }
+    }
+    .splitBanner {
+      position: relative;
+      .banner {
+          display: none; 
+      }
+      .bannerMobile {
+          display: block; 
+      }
+    }  
+    .input-group-field {
+     	margin-right: 0;
+        margin-bottom: 10px;
+      	width: 100%;
+    }
+
+  }
+ #progress_container {
+
+   .contentLeft {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      padding: 15px 0;
+      position: relative;
+      z-index: 10;
+	.mobileContainer {
+      width: 100%;
+      padding: 0 20px;
+      
+    }
+     
+     .mobileScrollWrap {
+      	position: relative;
+       .mobileScroll {
+          position: absolute;
+          z-index: 99999;
+          background: rgba(0,0,0, 0);
+          top: 0;
+          width: 100%;
+          bottom: 0;      
+        }
+       #milestoneWidget {
+        	position: relative;
+         	z-index: 1;
+            padding-top: 0;
+       }
+     }
+     
+      .logo {
+       	img {
+         	max-width: 200px; 
+        }
+      }
+      h1 {
+       	font-size: 24px;
+        line-height: 24px;
+         padding: 5px 10px;
+      }
+      p {
+       	font-size: 14px;
+        line-height: 16px;
+        padding: 0 15px;
+      }
+	  .socail {
+		padding: 10px 0 5px;        
+      }
+  }   
+   #vlCopyInput {
+      font-size: 16px; 
+   }
+ }
+  
+ 
+}
+
+@media only screen and (max-width: 480px) {
+  #widgets_container, .widgets_container {
+     h1 {
+        font-size: 21px;
+        line-height: 25px;
+      	letter-spacing: 0;
+     }
+      p {
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 400;
+        max-width: 1000px;
+        padding: 0;
+        margin: 0 auto 10px;
+        letter-spacing: 0;
+      }
+      em {
+        font-size: 12px;
+        padding: 10px 0 30px;
+      } 
+      .bannerMobile {
+          img {
+           	max-width: 175px; 
+          }
+      } 
+      .password-page__signup-form {
+          padding: 0 5px;
+          margin: 0;
+      }    
+      button, input[type="submit"] {
+        border: none;
+        width: 100%; 
+        margin: 10px 0 0 0;
+      }    
+  }  
+
+  #progress_container {
+      .formWrap {
+       		width: 300px;
+            margin: 20px auto 0;
+      }    
+  }    
+
+}
+.preloader {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.8);
+  width: 100%;
+  height: 100%;
+  z-index: 11000;
+  display: none;
+}
+.sk-circle {
+margin: auto;
+width: 40px;
+height: 40px;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+}
+  .sk-circle .sk-child {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .sk-circle .sk-child:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #f6a800;
+    border-radius: 100%;
+    -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+            animation: sk-circleBounceDelay 1.2s infinite ease-in-out both; }
+  .sk-circle .sk-circle2 {
+    -webkit-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+            transform: rotate(30deg); }
+  .sk-circle .sk-circle3 {
+    -webkit-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+            transform: rotate(60deg); }
+  .sk-circle .sk-circle4 {
+    -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+            transform: rotate(90deg); }
+  .sk-circle .sk-circle5 {
+    -webkit-transform: rotate(120deg);
+        -ms-transform: rotate(120deg);
+            transform: rotate(120deg); }
+  .sk-circle .sk-circle6 {
+    -webkit-transform: rotate(150deg);
+        -ms-transform: rotate(150deg);
+            transform: rotate(150deg); }
+  .sk-circle .sk-circle7 {
+    -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+            transform: rotate(180deg); }
+  .sk-circle .sk-circle8 {
+    -webkit-transform: rotate(210deg);
+        -ms-transform: rotate(210deg);
+            transform: rotate(210deg); }
+  .sk-circle .sk-circle9 {
+    -webkit-transform: rotate(240deg);
+        -ms-transform: rotate(240deg);
+            transform: rotate(240deg); }
+  .sk-circle .sk-circle10 {
+    -webkit-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+            transform: rotate(270deg); }
+  .sk-circle .sk-circle11 {
+    -webkit-transform: rotate(300deg);
+        -ms-transform: rotate(300deg);
+            transform: rotate(300deg); }
+  .sk-circle .sk-circle12 {
+    -webkit-transform: rotate(330deg);
+        -ms-transform: rotate(330deg);
+            transform: rotate(330deg); }
+  .sk-circle .sk-circle2:before {
+    -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s; }
+  .sk-circle .sk-circle3:before {
+    -webkit-animation-delay: -1s;
+            animation-delay: -1s; }
+  .sk-circle .sk-circle4:before {
+    -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s; }
+  .sk-circle .sk-circle5:before {
+    -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s; }
+  .sk-circle .sk-circle6:before {
+    -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s; }
+  .sk-circle .sk-circle7:before {
+    -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s; }
+  .sk-circle .sk-circle8:before {
+    -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s; }
+  .sk-circle .sk-circle9:before {
+    -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s; }
+  .sk-circle .sk-circle10:before {
+    -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s; }
+  .sk-circle .sk-circle11:before {
+    -webkit-animation-delay: -0.2s;
+            animation-delay: -0.2s; }
+  .sk-circle .sk-circle12:before {
+    -webkit-animation-delay: -0.1s;
+            animation-delay: -0.1s; }
+
+@-webkit-keyframes sk-circleBounceDelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes sk-circleBounceDelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  40% {
+    -webkit-transform: scale(1);
+transform: scale(1); } }

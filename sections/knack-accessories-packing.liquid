@@ -1,0 +1,71 @@
+<div class="packingWrap">
+  <hr>
+  <div class="layout horizontal center mobile-stack page-width max-900">
+    <div class="flex">
+      <img src="{{section.settings.packing1_img | img_url: '900x'}}" />
+    </div>
+    <div class="flex">
+      <img src="{{section.settings.packing2_img | img_url: '900x'}}" />
+    </div>
+    <div class="flex">
+      <img src="{{section.settings.packing3_img | img_url: '900x'}}" />
+    </div>
+  </div>
+  <div class="layout horizontal center mobile-stack page-width max-900">
+    <div class="flex">
+      <img src="{{section.settings.packing4_img | img_url: '900x'}}" />
+    </div>
+    <div class="flex">
+      <img src="{{section.settings.packing5_img | img_url: '900x'}}" />
+    </div>
+    <div class="flex">
+      <img src="{{section.settings.packing6_img | img_url: '900x'}}" />
+    </div>
+  </div>
+  <hr>
+</div>
+  
+{% schema %}
+  {
+    "name": "Packing",
+	"class": "landing-packing",
+    "settings": [
+		{
+        "type": "image_picker",
+        "id": "packing1_img",
+        "label": "Image 1"
+      },
+	{
+        "type": "image_picker",
+        "id": "packing2_img",
+        "label": "Image 2"
+      },
+	{
+        "type": "image_picker",
+        "id": "packing3_img",
+        "label": "Image 3"
+      },
+	{
+        "type": "image_picker",
+        "id": "packing4_img",
+        "label": "Image 4"
+      },
+	{
+        "type": "image_picker",
+        "id": "packing5_img",
+        "label": "Image 5"
+      },
+	{
+        "type": "image_picker",
+        "id": "packing6_img",
+        "label": "Image 6"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,212 @@
+{% assign current_url = '' %}
+
+{% if template contains 'page' %}
+    {% assign current_url = page.url %}
+{% elsif template contains 'blog' or template contains 'article' %}
+    {% assign current_url = blog.url %}
+{% elsif template contains 'collection' %}
+    {% assign current_url = collection.url %}
+{% elsif template contains 'product' %}
+    {% assign current_url = product.url %}
+{% endif %}
+
+{{ 'klaviyo-onsite.js'  | asset_url | script_tag     }}
+<script>
+    var klaviyo = klaviyo || [];
+    klaviyo.init({
+      account: "LrMHwS",
+      platform: "shopify",
+        display_on_policy_continue: false
+    });
+    klaviyo.enable("backinstock",{ 
+    trigger: {
+      product_page_text: "Or Notify Me When Available",
+      product_page_class: "btn-secondary",
+      product_page_text_align: "center",
+      product_page_margin: "0px",
+      replace_anchor: false
+    },
+    modal: {
+     additional_styles: "@import url('https://fonts.googleapis.com/css?family=Lora|Work+Sans');",
+      font_family: "Work Sans, HelveticaNeue,Helvetica Neue,sans-serif;",
+      headline: "{{product.title | upcase}}",
+     body_content: "Register to receive a notification when this item comes back in stock.",
+     email_field_label: "Email",
+     button_label: "ON NOTIFY ME WHEN AVAILABLE",
+     subscription_success_label: "You're in! We'll let you know when it's back.",
+     footer_content: '',
+     drop_background_color: "#000",
+     background_color: "#fff",
+     text_color: "#222",
+     button_text_color: "#fff",
+     button_background_color: "#f90",
+     close_button_color: "#ccc",
+     error_background_color: "#fcd6d7",
+     error_text_color: "#C72E2F",
+     success_background_color: "#d3efcd",
+     success_text_color: "#1B9500"
+    }
+  });
+</script>
+{% if current_url contains '-seconds' %}
+<style>
+	.klaviyo-bis-trigger{
+     	display: none !important; 
+    }
+</style>
+{% endif %}
+
+{% capture form_id %}AddToCartForm-{{ section_id }}{% endcapture %}
+{% form 'product', product, id: form_id, class: 'product-single__form' %}
+  {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+    {% for option in product.options_with_values %}
+      {% if settings.variant_type == 'button' %}
+        {% include 'variant-button', section_id: section_id, option_drop: option %}
+      {% else %}
+        {% include 'variant-dropdown', section_id: section_id %}
+      {% endif %}
+    {% endfor %}
+  {% endunless %}
+
+  <select name="id" id="ProductSelect-{{ section_id }}" class="product-single__variants no-js">
+    {% for variant in product.variants %}
+      {% if variant.available %}
+        <option {% if variant == product.selected_or_first_available_variant %}
+          selected="selected" {% endif %}
+          value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money_with_currency }}
+        </option>
+      {% else %}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+
+
+    {% if current_variant.inventory_quantity <= 25 and current_variant.inventory_quantity > 0 %}
+      <h4 id="remainingInventoryCallout-{{ section_id }}" class="hide">Only {{ current_variant.inventory_quantity }} left in stock - order soon</h4>
+
+    {% else %}
+      <h4 id="remainingInventoryCallout-{{ section_id }}" class="hide">{{ current_variant.inventory_quantity }} left in stock</h4>
+    {% endif %}
+
+  {% if settings.quantity_enable %}
+    <div class="product__quantity product__quantity--{{ settings.variant_type }} js-qty">
+      <label for="Quantity-{{ section_id }}">{{ 'products.product.quantity' | t }}</label>
+      <input type="number" hidden="hidden" id="Quantity-{{ section_id }}" name="quantity" value="1" min="1" class="js-qty__fallback">
+    </div>
+  {% endif %}
+
+
+
+  {% if settings.enable_payment_button %}
+    <div class="payment-buttons">
+  {% endif %}
+      <div>
+    <button
+      {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}
+      name="add"
+      id="AddToCart-{{ section_id }}"
+      class="{% if settings.enable_payment_button %}btn--tertiary{% else %}{% endif %} btn-primary add-to-cart {% unless current_variant.available %}disabled{% endunless %}"
+      {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+        {% if current_variant.metafields.inventory.isPreorder == 'true' %}
+            {{ 'products.product.preorder' | t }}
+        {% elsif current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+    </button>
+
+
+
+    {% if settings.enable_payment_button %}
+      {{ form | payment_button }}
+    {% endif %}
+      </div>
+
+
+
+    
+
+  {% if settings.enable_payment_button %}
+    </div>
+  {% endif %}
+<div style="font-size: 2px;">&nbsp;</div>
+
+{% if current_variant.metafields.inventory.isPreorder == 'true' %}
+<div id="variantAvailableDateLabel" style="margin-bottom: 8px;">
+  {{current_variant.metafields.inventory.preorderMessage }}
+</div>
+
+  {% elsif current_variant.metafields.inventory.genericMessage %}
+
+  <div id="variantAvailableDateLabel" style="margin-bottom: 8px;">
+    {{current_variant.metafields.inventory.genericMessage }}
+  </div>
+{% else %}
+<div id="variantAvailableDateLabel" style="display: none;">
+  </div>
+
+    {% endif %}
+
+  
+{% endform %}
+
+
+
+  {% if current_url contains '-seconds' or current_url contains '-discontinued' %}
+ 
+  <div>
+    <div class="grid-x">
+      <div class="cell small-12 medium-12">
+        <div style="font-weight: bold;">This product is sold "as is" and is not eligible for returns or exchanges.</div>
+        <br>
+      </div>
+    </div>
+    
+{% elsif current_url contains 'giftcard' %}
+
+
+{% elsif current_variant.metafields.inventory.isPreorder == 'true' %}
+
+  {% if product.price > 4000 %}
+    <div class="shippingInfo">
+      <div class="grid-x">
+
+        <div class="cell small-6 medium-6">
+          <span class="free">Free shipping <br>& <button id="freeReturns" data-balloon-length="large" data-balloon="{{product.metafields.free.returns}}" data-balloon-pos="down">Free returns</span>
+
+            </div>
+        </div>
+      </div>
+    {% endif %}
+
+  {% else %}
+
+  <div class="shippingInfo">
+    <div class="grid-x">
+      {% if product.price > 4000 %}
+      <div class="cell small-6 medium-6">
+        <span class="free">Free shipping <br>& <button id="freeReturns" data-balloon-length="large" data-balloon="{{product.metafields.free.returns}}" data-balloon-pos="down">Free returns</span>
+
+          </div>
+        
+
+        {% endif %}
+        <div id="shipsFast" class="cell small-6 medium-6">
+          <span class="fast">Ships fast <br><button id="shipping" data-balloon-length="large" data-balloon="{{product.metafields.fast.shipping}}" data-balloon-pos="down">(within 24 hours)</button></span>
+        </div>
+
+
+      </div>
+    </div>
+
+    {% endif %}
+    
+    {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+
+    

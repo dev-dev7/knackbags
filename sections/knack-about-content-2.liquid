@@ -1,0 +1,44 @@
+
+<div class="brandStory">
+  <div class="grid-container">
+    <div class="grid-x align-center">
+      	<div class="cell medium-10 small-12">
+    	<h1>{{section.settings.heading}}</h1>
+        <p>{{section.settings.description}}</p>                  
+        </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+	"name": "Content 2",
+	"class": "landing-content",
+    "settings": [
+		{
+        "type": "header",
+        "content": "Content"
+      },
+		{
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "html",
+        "id": "description",
+        "label": "description",
+		"default": "description"
+      }
+	]
+  }
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

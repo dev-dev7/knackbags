@@ -1,0 +1,93 @@
+{% comment %}
+SHOP ACCESSORIES
+<!-- landing 2 -->
+<style>
+  div#shopify-section-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  body .page-content{
+    padding-top: 0px;
+  }
+  
+   body .custom-header{
+ 	position: absolute; 
+  }
+  
+  
+  .header-layout{
+   	max-width: 1300px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  .site-footer > .page-width{
+    max-width: 1300px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  .main-content > .page-width{
+   	max-width: 100%; 
+    padding: 0;
+  }
+  
+{% endcomment %}
+</style>
+<style>
+	.prodHori {
+            max-width: none;
+            margin: 0px auto;
+            padding-top: 0px;
+    }
+</style>
+<div class="page-width page-content">
+<div class="prodHori">
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell medium-6 small-12">
+		{% section 'knack-accessories-product-large' %}
+      </div>
+      <div class="cell medium-6 small-12">
+		{% section 'knack-accessories-product-medium' %}
+      </div>
+      <div class="cell medium-6 small-12">
+        {% section 'knack-accessories-product-insert' %}
+      </div>
+      <div class="cell medium-6 small-12">
+        {% section 'knack-accessories-product-bundle' %}
+      </div>
+    </div>
+  </div>
+  
+  {% section 'knack-accessories-slideshow' %}
+
+  <div id="moreInfoWrap">
+  <div class="accessoryDetail">
+    <div class="grid-x">
+      <div class="cell medium-6 small-12" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+        <img width="600" class="lazy" data-src="{{page.metafields.detail_image.one}}" alt="image alt text"/>  
+        <h4>{{page.metafields.detail_image.one_title}}</h4>   
+      </div>
+      <div class="cell medium-6 small-12" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" data-aos-delay="100">
+        <img width="600" class="lazy" data-src="{{page.metafields.detail_image.two}}"/> 
+        <h4>{{page.metafields.detail_image.two_title}}</h4>    
+      </div>          
+    </div>
+    </div>
+  </div>
+
+</div>
+  {% include 'breadcrumbs' %}
+  
+  
+
+</div>
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+  _learnq.push(['track', 'Viewed Category', 'Cubes']);
+</script>

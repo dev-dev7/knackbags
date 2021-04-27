@@ -1,0 +1,215 @@
+{% render 'shogun-products', content: product %}
+{{ 'product.scss.css' | asset_url | stylesheet_tag }}
+<style>
+  #MainContent{
+    max-width: 1200px;
+  }
+
+  .slick-list{
+    margin-top: -60px;
+  }
+
+  .description{
+    padding: 0;
+  }
+
+  .product__thumbs .slick-arrow.down{
+    bottom: 0;
+    background: #fff;
+    opacity: 1;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .product__thumbs .slick-arrow.up{
+    top: 0;
+    background: #fff;
+    opacity: 1;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .product-image-main .image-alt{
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    background: #fff;
+  }
+</style>
+
+{% include 'shogun-products', content: product %}
+{% assign tabs = product.metafields.tabs %}
+
+{% comment %}
+{% capture the_snippet_content %}{% include 'socialshopwave-helper' %}{% endcapture %}
+{% unless the_snippet_content contains 'Liquid error' %}
+{{ the_snippet_content }}
+{% endunless %}
+{% endcomment %}
+
+{% section 'product-template-v2' %}
+
+
+
+
+
+{% comment %}
+<h2 class="text-center">Product Details</h2>
+
+<div class="grid-container">
+  <div id="tabSection" class="grid-x">
+    <div class="cell small-12 medium-6">
+      {% section 'product-video' %}
+    </div>
+    <div class="cell small-12 medium-6">
+      <div id="productTabs" class="tabs">
+        <div class="tab-labels" style="display: none;">
+          <span class="tab-label selected">Size</span>
+          <span class="tab-label">Materials</span>
+          <span class="tab-label">Features</span>
+        </div>
+        <div class="tab-contents">
+          <div class="tab-content">{{ tabs.size }}</div>
+          <div class="tab-content">{{ tabs.materials }}</div>
+          <div class="tab-content">{{ tabs.features }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endcomment %}
+{% comment %}
+  <div id="moreInfoWrap">
+    {% section 'knack-bags-features' %}
+    <!--<div class="grid-x">
+      <div class="cell medium-4 small-12" data-aos="fade-in" data-aos-anchor-placement="bottom-bottom">
+        <img src="{{product.metafields.detail_image.one}}"/>
+        <h4>{{product.metafields.detail_image.one_title}}</h4>
+      </div>
+      <div class="cell medium-4 small-12" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" data-aos-delay="200">
+        <img src="{{product.metafields.detail_image.two}}"/>
+        <h4>{{product.metafields.detail_image.two_title}}</h4>
+      </div>
+      <div class="cell medium-4 small-12" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" data-aos-delay="300">
+        <img src="{{product.metafields.detail_image.three}}"/>
+        <h4>{{product.metafields.detail_image.three_title}}</h4>
+      </div>
+    </div>-->
+  </div>
+{% endcomment %}
+
+{% comment %}
+<div style="display: none;">
+    {%- assign include_page_handle = 'feature-' | append: product.id -%}
+    {%- assign include_page = pages[include_page_handle] -%}
+    {% if include_page.title != blank %}
+      <div> {{ include_page.content }}</div>
+    {% endif %}
+</div>
+{% endcomment %}
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    preorder: {{ 'products.product.preorder' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+
+	/**
+    $(document).ready(function(){
+      $('#productTabs .tab-label').click(function(event){
+        let selectedIndex = $('#productTabs .tab-label').index(this);
+        $('#productTabs .tab-label').removeClass('selected');
+        $('#productTabs .tab-content').hide();
+        $('#productTabs .tab-label:eq('+selectedIndex+')').addClass('selected');
+        $('#productTabs .tab-content:eq('+selectedIndex+')').show();
+      });
+
+    });
+	**/
+
+
+</script>
+
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
+{% comment %}
+{{product.metafields.shogun.above}}
+{% endcomment %}
+
+<div class="shogun-below">
+	{{product.metafields.shogun.below}}
+</div>
+
+
+{% section 'product-reviews' %}
+
+{% include 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, auto_install: true %}
+
+
+
+<div id="hiddenDescription" style="max-height: 0; overflow: hidden; opacity: 0;">
+  {{product.description}}
+</div>
+
+
+<!--
+<div crl8-container-id="product" crl8-filter="productId:'{{ product.selected_or_first_available_variant.sku}}'"></div>
+-->
+<!--
+<div class="grid-container">
+  <div class="grid-x">
+    <div class="small-12 fcYUQu">
+      <div class="sc-102xyuw-1 djQUJZ"><h2 class="sc-102xyuw-2 text-center">Living a One Bag Life</div></div>
+    <div class="small-12 ssw-html-widget ssw-instagram-widget" data-module="service" data-name="instagramPhotos" data-product_id="product.id" data-tagged="1" data-type="slide">
+      <div class="ssw-page-loading">
+        <span class="ssw-spin ssw-loader"></span>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+{% if section.settings.show_image %}
+  {% if section.settings.image != blank %}
+    {%- assign background_image = section.settings.image | img_url: '1800x' -%}
+  {% endif %}
+
+  <style>
+    .landing-split-3 .image {
+      background-image: url({{ background_image }});
+      background-size: cover;
+    }
+  </style>
+{% else %}
+  <style>
+    .landing-split-3 .image {
+      background-image: none;
+    }
+  </style>
+{% endif %}
+
+
+<div class="layout horizontal-reverse mobile-stack feature page-width max-1300">
+  <div class="flex fh tile">
+    <div class="fh layout horizontal center">
+      <div class="fw">
+      	{{section.settings.content}}
+      </div>
+    </div>
+  </div>
+  <div class="flex image fh tile">
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Split 3",
+	"class": "landing-split-3",
+    "settings": [
+		{
+        "type": "header",
+        "content": "Background image"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "Enable image",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+	  {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "html",
+        "id": "content",
+        "label": "Content"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

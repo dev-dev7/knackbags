@@ -1,0 +1,45 @@
+
+<div class="fullWidth">
+  <div class="descriptionWrap">
+  <h2>{{section.settings.description}}</h2>
+  <a class="btn-primary" href="{{section.settings.product2_url}}">{{section.settings.button_label}}</a>
+  </div>
+  <div class="grid-x">
+    <div class="cell small-5">
+      <div class="blockImage" style="background-image:url('{{section.settings.image | img_url: 'master' }}')"></div>
+    </div>
+  </div>
+</div>  
+{% schema %}
+  {
+    "name": "Image with text",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "description",
+        "label": "Description"
+      },
+	  {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+	  {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label"
+      },
+  	  {
+  			"type": "url",
+  			"id": "button_url",
+  			"label": "Link"
+  	  }
+    ],
+    "presets": [
+      {
+        "name": "Full Width Image w/ description",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

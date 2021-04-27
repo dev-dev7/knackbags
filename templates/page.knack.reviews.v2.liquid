@@ -1,0 +1,130 @@
+<style>
+	h2{
+     	text-align: center; 
+    }
+  
+  #MainContent .tabs{
+   	margin: 0; 
+  }
+  
+  .tabs-content{
+    border: 1px solid #e8e8e1;
+    border-top: 0;
+    padding: 16px;
+ 
+  }
+  
+  .tabs-content h2{
+   	font-size: 20px; 
+  }
+</style>
+
+<!-- TrustBox script --> <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script> <!-- End TrustBox script -->
+<div class="page-width page-content">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell large-10 large-offset-1">
+        <h1 class="text-center">WE LOVE HEARING FROM KNACKPACKERS</h1>
+        <p class="reviews-desc">When we started Knack, we focused on creating backpacks that freed people from carrying multiple bags at the same time.  Since our launch, we’ve heard from hundreds of people who love our concept of One Bag Life<sup>&reg;</sup> and who also give us great feedback on how we are doing.  Their honest comments help us to continue creating game-changing products and customer service. Because we find reviews from Knackpackers to be so helpful, we thought we would share them with you as you think about whether One Bag Living is right for you.</p>
+      </div>
+  </div>
+    
+    <h2>Expandable Pack Reviews</h2>
+
+      <ul class="tabs inline-list text-center">
+        {% comment %}
+        <li class=""><a href="#panel-limited">Series 1: Limited Edition</a></li>
+        {% endcomment %}
+        
+        <li class=""><a href="#panel-lg">Series 1: Large</a></li>
+        
+        <li class=""><a href="#panel-med">Series 1: Medium</a></li>
+        
+        <li class=""><a href="#panel-med-series-2">Series 2: Medium</a></li>
+        
+        <li class=""><a href="#panel-small">Series 1: Small</a></li>
+        
+        <li class=""><a href="#panel-leather">Series 1: Leather</a></li>
+      </ul>
+
+      <div class="tabs-content">
+        {% comment %}
+        <div class="" id="panel-limited">
+          <div class="bp-img">
+            <img src="//cdn.shopify.com/s/files/1/0023/8767/3149/files/md_knack_gray_angle_200x300.jpg?41751">
+          </div>
+          <h2 class="text-center">Series 1: Limited Edition Expandable Pack</h2>
+          {% assign product = all_products["limited-edition-medium-expandable-knackpack"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+        {% endcomment %}
+        
+        
+        <div class="" id="panel-lg">
+          <div class="bp-img">
+			<img src="//cdn.shopify.com/s/files/1/0023/8767/3149/products/Series1-Large_SquareGrayAngle_600x.jpg?v=1606085961">
+          </div>
+          <h2 class="text-center">Series 1: Large Expandable Pack</h2>
+          {% assign product = all_products["large-expandable-knackpack"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+        
+                
+        <div class="" id="panel-med" style="display:none;">
+          <div class="bp-img">
+            <img src="//cdn.shopify.com/s/files/1/0023/8767/3149/products/Series1-Medium_SquareGrayAngle_600x.jpg?v=1606349905">
+          </div>
+          <h2 class="text-center">Series 1: Medium Expandable Pack</h2>
+          {% assign product = all_products["medium-expandable-knackpack"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+        
+                
+        <div class="" id="panel-med-series-2" style="display:none;">
+          <div class="bp-img">
+            <img src="//cdn.shopify.com/s/files/1/0023/8767/3149/files/Series2-Medium_Reverse-Angle-View-Black-Square_600x_d0353dff-f9c3-4ca7-add6-b081cd90324c.jpg?v=1614914787">
+          </div>
+          <h2 class="text-center">Series 2: Medium Expandable Pack</h2>
+          {% assign product = all_products["medium-expandable-backpacks-series-2"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+        
+
+        <div class="" id="panel-small" style="display:none;">
+          <div class="bp-img">
+			<img src="//cdn.shopify.com/s/files/1/0023/8767/3149/products/Series1-Small_SquareGrayAngle_600x.jpg?v=1606349619">
+          </div>
+          <h2 class="text-center">Series 1: Small Expandable Pack</h2>
+          {% assign product = all_products["small-expandable-knackpack"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+        
+
+        <div class="" id="panel-leather" style="display:none;">
+          <div class="bp-img">
+            <img src="//cdn.shopify.com/s/files/1/0023/8767/3149/products/Series1-Medium_SquareLeatherAngle_600x.jpg?v=1606087202">
+          </div>
+          <h2 class="text-center">Series 1: Leather Expandable Pack</h2>
+          {% assign product = all_products["medium-leather-expandable-knackpack"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+                
+        
+      </div>
+    
+      <h2 style="margin-top: 70px;">Company Reviews</h2>
+    
+      <div>
+      <!-- TrustBox widget - List --> 
+      <div class="trustpilot-widget" data-locale="en-US" data-template-id="539ad60defb9600b94d7df2c" data-businessunit-id="5cf01c3b3f0ff4000123f361" data-style-height="500px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5"> 
+        <a href="https://www.trustpilot.com/review/knackbags.com" target="_blank" rel="noopener">Trustpilot</a> 
+      </div> <!-- End TrustBox widget -->
+    </div>
+
+    </div>
+
+</div>
+

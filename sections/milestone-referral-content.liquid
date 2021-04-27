@@ -1,0 +1,255 @@
+{% if section.settings.referral_show_image %}
+  {% if section.settings.referral_image != blank %}
+    {%- assign password_image = section.settings.referral_image | img_url: '1800x' -%}
+  {% else %}
+    {%- assign password_image = 'password-page-background.jpg' | asset_url -%}
+  {% endif %}
+
+  <style>
+    body {
+      background-color: #000;
+    }
+    .password-page__image {
+      background-image: url({{ password_image }});
+    }
+    .password-page__wrapper {
+      color: #fff;
+    }
+    .password-page__wrapper hr {
+      border-color: inherit;
+    }
+  </style>
+{% else %}
+  <style>
+    .password-page__image {
+      display: none !important;
+    }
+  </style>
+{% endif %}
+
+
+
+
+<div class="milestone-page__main__inner">
+
+
+
+  {% comment %}
+    Password message which you can edit on http://www.shopify.com/admin/online_store/preferences
+  {% endcomment %}
+  {% unless shop.password_message == blank %}
+    <div class="password-page__message">
+      {{ shop.password_message }}
+    </div>
+  {% endunless %}
+
+  {% if section.settings.newsletter_enable %}
+    <div>
+       {% if section.settings.referral_image != blank %}
+        {%- assign password_image = section.settings.referral_image | img_url: '1800x' -%}
+      {% else %}
+        {%- assign password_image = '' -%}
+      {% endif %}
+      
+
+      <div class="feature-row" style="background-image: url({{password_image}})">
+        <div class="feature-row__item">
+
+          <div class="milestone-page__logo">
+            <h1 class="h2" itemscope itemtype="http://schema.org/Organization">
+              {% if section.settings.logo != blank %}
+                {%- assign header_logo_size = section.settings.desktop_logo_height | prepend: 'x' -%}
+                {%- assign header_logo_size_mobile = section.settings.mobile_logo_height | prepend: 'x' -%}
+                <style>
+                  .milestone-page__logo h1 {
+                    height: {{ section.settings.mobile_logo_height }}px;
+                  }
+                  @media only screen and (min-width: 590px) {
+                    .milestone-page__logo h1 {
+                      height: {{ section.settings.desktop_logo_height }}px;
+                    }
+                  }
+                </style>
+                <img
+                  class="medium-down--hide"
+                  src="{{ section.settings.logo | img_url: header_logo_size }}"
+                  srcset="{{ section.settings.logo | img_url: header_logo_size }} 1x, {{ section.settings.logo | img_url: header_logo_size, scale: 2 }} 2x"
+                  alt="{{ section.settings.logo.alt | default: shop.name }}"
+                  itemprop="logo">
+                <img
+                  class="large-up--hide"
+                  src="{{ section.settings.logo | img_url: header_logo_size_mobile }}"
+                  srcset="{{ section.settings.logo | img_url: header_logo_size_mobile }} 1x, {{ section.settings.logo | img_url: header_logo_size_mobile, scale: 2 }} 2x"
+                  alt="{{ section.settings.logo.alt | default: shop.name }}">
+              {% else %}
+                <span>{{ shop.name }}</span>
+              {% endif %}
+            </h1>
+          </div>
+
+            {% unless section.settings.title == blank %}
+          <h2 class="password-page__hero">{{ section.settings.title }}</h2>
+          {% endunless %}
+          	<div id="widgets_container" style="display: none">
+            <div data-vl-widget="embedForm"></div>
+          </div>
+          <div id="form_container" style="display: none">
+            <form method="post" action="/contact#contact_form" id="referral_contact_form" accept-charset="UTF-8" class="contact-form"><input type="hidden" name="form_type" value="customer"><input type="hidden" name="utf8" value="✓">
+              <div style="display: none;"></div>
+              <p class="password-page__form-heading">{{ section.settings.referral_form_heading }}</p>
+              <br>
+              <input type="hidden" name="contact[tags]" value="prospect, password page">
+              <label for="email" class="hidden-label">Email</label>
+              <div class="password-page__signup-form">
+                <div class="input-group">
+                  <input type="text" name="contact[email]" id="email" class="input-group-field" placeholder="{{ section.settings.newsletter_placeholder }}">
+                </div>
+                <div class="input-group">
+                  <input type="text" name="firstname" id="firstname" class="input-group-field" placeholder="First Name">
+                </div>
+                <div class="input-group">
+                  <input type="text" name="lastname" id="lastname" class="input-group-field" placeholder="Last Name">
+
+                </div>
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <input type="submit" name="contact[submit]" class="btn password-page__signup-form__submit"  value="{{ section.settings.newsletter_button_text }}">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="feature-row__item">
+
+        </div>
+      </div>
+      <div id="progress_container" style="display: none">
+        <div data-vl-widget="referralCountWidget" style="display: none"></div>
+        <div id="milestoneWidget" data-vl-widget="milestoneWidget"></div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_share_buttons %}
+  <div class="password-page__social-sharing">
+    {% include 'social-sharing' %}
+  </div>
+  {% endif %}
+
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Content",
+    "class": "password-page__main",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Opening Soon"
+      },
+      {
+        "type": "header",
+        "content": "Newsletter"
+      },
+      {
+        "type": "checkbox",
+        "id": "newsletter_enable",
+        "label": "Show newsletter signup",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "newsletter_placeholder",
+        "label": "Newsletter placeholder text",
+        "default": "Email address"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_label",
+        "label": "Newsletter label",
+        "default": "Let us know if you’d like more information."
+      },
+      {
+        "type": "text",
+        "id": "newsletter_button_text",
+        "label": "Newsletter button text",
+        "default": "Submit"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_success",
+        "label": "Newsletter success text",
+        "default": "Thanks. We’ll let you know when it’s time to go."
+      },
+      {
+        "type": "header",
+        "content": "Social sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      },
+	  {
+        "type": "header",
+        "content": "Referral"
+      },
+      {
+        "type": "text",
+        "id": "referral_form_heading",
+        "label": "Referral label",
+        "default": "While the shortest route...",
+		"info": "[Tell your visitors about a launch day discount](https://www.shopify.com/blog/15514000-14-ways-to-use-offers-coupons-discounts-and-deals-to-drive-revenue-and-customer-loyalty)."
+      },
+      {
+        "type": "header",
+        "content": "Background image"
+      },
+      {
+        "type": "checkbox",
+        "id": "referral_show_image",
+        "label": "Enable image",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "referral_image",
+        "label": "Image"
+      },
+	  {
+        "type": "header",
+        "content": "Logo"
+      },
+	  {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "desktop_logo_height",
+        "label": "Desktop logo height",
+        "default": 100,
+        "min": 20,
+        "max": 120,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "mobile_logo_height",
+        "label": "Mobile logo height",
+        "default": 60,
+        "min": 20,
+        "max": 120,
+        "unit": "px"
+      }
+	
+    ]
+  }
+{% endschema %}

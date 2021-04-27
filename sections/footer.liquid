@@ -1,0 +1,330 @@
+{% assign current_url = '' %}
+
+{% if template contains 'page' %}
+    {% assign current_url = page.url %}
+{% elsif template contains 'blog' or template contains 'article' %}
+    {% assign current_url = blog.url %}
+{% elsif template contains 'collection' %}
+    {% assign current_url = collection.url %}
+{% elsif template contains 'product' %}
+    {% assign current_url = product.url %}
+{% endif %}
+
+
+{% comment %}
+
+<div class="subfooter" style="border-top: 1px solid #e8e8e1"></div>
+
+<div class="page-width">
+	<div class="grid-x grid-margin-x">
+      <div class="cell text-center">
+        <div class="mb-2"> <img class="lazy" width="401" height="201" data-src="//cdn.shopify.com/s/files/1/0023/8767/3149/files/selogo.png?v=1595855493" data-srcset="//cdn.shopify.com/s/files/1/0023/8767/3149/files/selogo.png?v=1595855493" style="max-width: 200px;"/></div>
+        <div class="font-weight-bold mb-2">You can now receive product discounts and free product for investing in Knack Inc.</div>
+        <div><a href="https://www.startengine.com/knack-bags?utm_source=knack&utm_medium=footer&utm_campaign=SE" style="text-decoration: underline;" target="_blank">Learn more here</a></div>
+      </div>
+   </div>
+</div>
+
+{% endcomment %}
+
+<div class="subfooter"></div>
+
+{% if current_url contains '-seconds' or current_url contains 'sale'%}
+{% else %}
+
+<div class="subfooter">
+  <div class="page-width">
+    <div class="grid-x grid-margin-x" data-equalizer="mainblock" data-equalize-by-row="true">
+      
+<!--       <div class="cell medium-3">
+        <div data-equalizer-watch="mainblock">
+          <div>
+            <img src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-rhodeisland-v2.png?42526" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-rhodeisland-v2_2x_a8dbb9a8-b4d7-4040-8622-78568c26bae5.png?42526 2x" alt="Designed in Rhode Island">
+          </div>
+          <h4>Designed in Rhode Island</h4>
+          <p>
+            The idea for Knack was born and designed in Rhode Island. Our core team lives here and we review every email and comment.
+          </p>
+          <a href="/pages/about">Our Story</a>
+        </div>
+      </div> -->
+
+      <div class="cell medium-6">
+        <div data-equalizer-watch="mainblock">
+          <div>
+            <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-freeshipping-v2.png?42526" data-srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-freeshipping-v2_2x_49235303-4060-417e-bed2-cc5226d85aff.png?42526 2x" alt="Free Shipping Over $40">
+          </div>
+          <h4>Free Shipping Over $50</h4>
+          <p>We ship fast so you don’t have to wait very long for your Knack. It’s important to get your Knack quickly.</p>
+          <a href="/pages/shipping-options">Shipping Options</a>
+        </div>
+      </div>
+
+      <div class="cell medium-6">
+        <div data-equalizer-watch="mainblock">
+          <div>
+            <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-returns-v2.png?42526" data-srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-returns-v2_2x_d24cd438-bcd6-49e4-9c82-a8bff1d8e080.png?42526 2x" alt="Hassle Free Returns">
+          </div>
+          <h4>Hassle Free Returns</h4>
+          <p>We gladly offer a 30-day trial period. If you’re not satisfied by day 30, you can return your Knack for free. No questions asked.</p>
+          <a href="/pages/returns">Returns</a>
+        </div>
+      </div>
+
+<!--       <div class="cell medium-4">
+        <div data-equalizer-watch="mainblock">
+          <div>
+            <img src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-giftcard-v2.png?42526" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-giftcard-v2_2x_c2e54e70-236f-4b17-8744-4d2c9884d556.png?42526 2x" alt="Knack Gift Cars">
+          </div>
+          <h4>Knack Gift Cards</h4>
+          <p>Can’t decide? Knack gift cards make the perfect gift if you’re not sure which size or color to give as a gift.</p>
+          <a href="/products/giftcard">Buy a Gift Card</a>
+        </div>
+      </div> -->
+      
+    </div>
+  </div>
+</div>
+{% endif %}
+<!-- <div class="footerBanner">
+  <img width="2000" class="lazy" data-src="{{ 'footer_banner.png' | asset_url }}"/>   
+</div> -->
+<footer class="site-footer">
+  <div class="page-width">
+
+    <div class="grid layout horizontal wrap mobile-stack">
+      {% assign row_width = 0 %}
+      {% for block in section.blocks %}
+        {% assign row_width = row_width | plus: block.settings.container_width %}
+      <div class="display: none !important;">
+        <style>
+          @media only screen and (min-width: 590px) {
+            .footer__item--{{ block.id }} {
+              min-width: {{ block.settings.container_width }}%;
+            }
+          }
+        </style>
+      </div>
+        
+      
+      	{% if forloop.first == false %}
+        	<div style="width: 16px;"></div>
+        {% endif %}
+
+        {% if row_width > 100 %}
+          <div class="footer__clear small--hide"></div>
+          {% assign row_width = row_width | minus: 100 %}
+        {% endif %}
+
+        {% case block.type %}
+
+        {% when 'custom' %}
+          <div class="flex custom-item footer__item--{{ block.id }}">
+            {% include 'footer-custom-text', block: block %}
+          </div>
+        {% when 'newsletter' %}
+          <div class="newsletter-item footer__item--{{ block.id }}" style="margin-right: 16px;">
+            {% include 'footer-newsletter', block: block %}
+          </div>
+        {% when 'menu' %}
+          <div class="flex menu-item footer__item--{{ block.id }}">
+            {% include 'footer-menu', block: block %}
+          </div>
+        {% endcase %}
+      {% endfor %}
+
+      
+    </div>
+
+    {% include 'currency-picker', picker_id: 'footer', currency_class: 'footer__currency large-up--hide' %}
+
+    {% if section.settings.show_payment_icons %}
+      {% unless shop.enabled_payment_types == empty %}
+        {%- assign payment_icons_available = 'amazon_payments,american_express,apple_pay,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,google_pay,interac,jcb,litecoin,maestro,master,paypal,stripe,visa' | split: ',' -%}
+        <ul class="inline-list payment-icons">
+          {% for type in shop.enabled_payment_types %}
+            {% if payment_icons_available contains type %}
+              <li class="payment-icon">
+                {%- assign icon_name = type | prepend: 'icon-' -%}
+                {% include icon_name %}
+                <span class="icon__fallback-text">{{ type | replace: '_', ' ' }}</span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endunless %}
+    {% endif %}
+      {% for block in section.blocks %}
+        {% if block.type == 'logo_social' %}
+            {% include 'footer-logo-social', block: block %}
+        {% endif %}
+      {% endfor %}    
+    <div class="copyright">{{section.settings.copyright}}</div>
+  </div>
+  
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "max_blocks": 12,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      },
+      {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_social",
+        "name": "Logo and social",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo image"
+          },
+          {
+            "type": "range",
+            "id": "desktop_logo_height",
+            "label": "Logo height",
+            "default": 50,
+            "min": 20,
+            "max": 120,
+            "unit": "px"
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 15,
+            "min": 10,
+            "max": 95,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "type": "menu",
+        "name": "Menu",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_footer_title",
+            "label": "Show title",
+            "default": true
+          },
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Choose a menu",
+            "default": "footer",
+            "info": "This menu won't show dropdown items"
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 15,
+            "min": 10,
+            "max": 95,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "type": "newsletter",
+        "name": "Newsletter",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_footer_title",
+            "label": "Show title",
+            "default": true
+          },
+          {
+            "type": "paragraph",
+            "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers)."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Sign up and save"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "info": "Optional",
+            "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 15,
+            "min": 10,
+            "max": 95,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "type": "custom",
+        "name": "Custom text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_footer_title",
+            "label": "Show title",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Custom text"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Add your own custom text here.</p>"
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 15,
+            "min": 10,
+            "max": 95,
+            "unit": "%"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {},
+      "blocks": [
+        {
+          "type": "menu",
+          "settings": {}
+        },
+        {
+          "type": "logo_social",
+          "settings": {}
+        }
+      ]
+    }
+  }
+{% endschema %}

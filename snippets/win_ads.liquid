@@ -1,0 +1,33 @@
+<!-- Era of Ecom Engine Hook start -->
+<link rel="dns-prefetch" href="//winads.eraofecom.org">
+<script title="winads_engine" type="text/javascript">
+    (function (w, i, n, a, d, s) {
+    if (w.winads != undefined) return true;
+    w.winads = true; s = i.createElement(n); s.src = a; s.async = true;
+    d = i.querySelector(n); d.parentNode.insertBefore(s, d);
+})(window, document, 'script', 'https://winads.eraofecom.org/pull/{{shop.permanent_domain}}/hook.js', 'Era of Ecom');
+
+    //BOUNCER_PLACEHOLDER
+</script>
+{% if template contains "product" %}
+<meta name="wa:tags" content="{{ product.tags | join: ", " | escape }}">
+<meta name="wa:collections" content="{{ product.collections | map: "title" | join: ", " | escape }}">
+{% endif %}
+{% if template contains "cart" %}
+<meta name="wa:tags" content="{``:``{% for line_item in cart.items %}, `{{line_item.product.id}}`: [``{% for tag in line_item.product.tags %},`{{ tag | replace: '"', '\"' | escape }}`{% endfor %}]{% endfor %} }">
+<meta name="wa:collections" content="{``:``{% for line_item in cart.items %}, `{{line_item.product.id}}`: [``{% for collection in line_item.product.collections %},`{{ collection.title | replace: '"', '\"' | escape }}`{% endfor %}]{% endfor %} }">
+{% endif %}
+{% if template contains "collection" %}
+<meta name="wa:collections" content="{{ collection.title }}">
+{% endif %}
+{% if customer %}
+<meta name="wa:customer_tags" content="{% for tag in customer.tags %}{{ tag | replace: '"', '\"' | escape}},{% endfor %}">
+<meta name="wa:customer_name" content="{{ customer.name }}">
+<meta name="wa:customer_email" content="{{ customer.email }}">
+<meta name="wa:customer_addresses" content="{{ customer.addresses | json | escape }}">
+<meta name="wa:customer_lastOrder" content="{{ customer.last_order.created_at | date: "%B %d, %Y %I:%M%p" }}">
+<meta name="wa:customer_orderCount" content="{{ customer.orders_count }}">
+<meta name="wa:customer_totalSpent" content="{{ customer.total_spent }}">
+<meta name="wa:customer_lastOrderId" content="{{ customer.last_order.id }}">
+{% endif %}
+<!-- Era of Ecom Engine Hook end -->

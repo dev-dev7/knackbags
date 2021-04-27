@@ -1,0 +1,43 @@
+{% schema %}
+  {
+    "name": "Landing Banner",
+	"class": "landing-banner",
+    "settings": [
+		{
+        "type": "header",
+        "content": "Background image"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "Enable image",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+	  {
+        "type": "header",
+        "content": "Copy"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+	  {
+        "type": "text",
+        "id": "subheading",
+        "label": "Sub Heading"
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

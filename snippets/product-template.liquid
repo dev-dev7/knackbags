@@ -1,0 +1,528 @@
+<!--
+<style>
+  .site-header{
+    background-color: #000;
+  }
+</style>
+-->
+
+  <!-- Affirm -->
+<script defer>
+  $(document).ready(function(){
+ _affirm_config = {
+   public_api_key:  "5EWLIIEB0HWF0FPH",
+   script:          "https://cdn1.affirm.com/js/v2/affirm.js"
+ };
+ (function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+// Use your live public API Key and https://cdn1.affirm.com/js/v2/affirm.js script to point to Affirm production environment.
+    });
+</script>
+<!-- End Affirm -->
+
+{% unless thumbnail_position %}
+{%- assign thumbnail_position = 'beside' -%}
+{% endunless %}
+
+<!-- itemscope itemtype="http://schema.org/Product" -->
+
+<div id="ProductSection-{{ section_id }}"
+     class="product-section"
+     data-section-id="{{ section_id }}"
+     data-section-type="product-template"
+     {% if settings.product_zoom_enable %}
+     data-image-zoom="true"
+     {% endif %}
+     {% if settings.inventory_enable %}
+     data-inventory="true"
+     {% endif %}
+     {% unless isModal %}
+     data-enable-history-state="true"
+     {% endunless %}
+     {% if isModal %}
+     data-lazyload-content="true"
+     {% endif %}>
+
+  {% include 'product-template-variables' %}
+
+  <script type="text/javascript">
+
+    window.variantInventoryMap = {};
+    window.variantQuantityMap = {};
+    {% for variant in product.variants %}
+    window.variantInventoryMap[{{variant.id}}] = {{ variant.metafields.inventory | json }};
+    window.variantQuantityMap[{{variant.id}}] = {{ variant.inventory_quantity | json }};
+    {% endfor %}
+
+  </script>
+
+  <div class="page-content">
+    <div class="page-width">
+
+      {% if settings.show_breadcrumbs and isModal != true %}
+      {% include 'breadcrumbs' %}
+      {% endif %}
+
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-7">
+          {% include 'product-images', section_id: section_id, isModal: isModal, thumbnail_position: thumbnail_position %}
+
+
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+
+          <div class="product-single__meta">
+            {% if settings.vendor_enable %}
+            <div class="product-single__vendor" itemprop="brand">{{ product.vendor }}</div>
+            {% endif %}
+
+            <!-- itemprop="offers" itemscope itemtype="http://schema.org/Offer" -->
+
+            <div class="product-offers">
+
+              <h1 class="product-single__title" itemprop="name">{{ product.title }}</h1>
+
+              {% if settings.sku_enable %}
+              <p id="Sku-{{ section_id }}" class="product-single__sku">
+                {% if current_variant.sku %}
+                {{ current_variant.sku }}
+                {% endif %}
+              </p>
+              {% endif %}
+
+              {% if product.compare_at_price_max > product.price %}
+              {%- assign hide_sale_price = true -%}
+              {% if current_variant.compare_at_price %}
+              {%- assign hide_sale_price = false -%}
+              {% endif %}
+              <span
+                    id="PriceA11y-{{ section_id }}"
+                    class="visually-hidden"
+                    aria-hidden="{{ hide_sale_price }}">
+                {{ 'products.general.regular_price' | t }}
+              </span>
+              <span class="product__price-wrap-{{ section_id }}{% if hide_sale_price %} hide{% endif %}">
+                <span id="ComparePrice-{{ section_id }}" class="product__price product__price--compare">
+                  {% if current_variant.compare_at_price > current_variant.price %}
+                  {{ current_variant.compare_at_price | money }}
+                  {% endif %}
+                </span>
+              </span>
+              <span id="ComparePriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+              {% else %}
+              <span id="PriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+              {% endif %}
+
+              <span id="ProductPrice-{{ section_id }}"
+                    class="product__price{% if current_variant.compare_at_price > current_variant.price %} on-sale{% endif %}"
+                    itemprop="price"
+                    content="{{ current_variant.price | divided_by: 100.00 }}">
+                {{ current_variant.price | money }}
+              </span>
+
+              {% if product.price > 10000 %}
+                  <p class="affirm-as-low-as" data-page-type="product" data-amount="{{ product.price | divided_by: 1 }}"></p>
+              {% endif %}
+              {% comment %}
+                <div class="reviewWrap">
+                  {% include 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false %}
+                  <!--
+                  <div class="yotpo bottomLine"
+                       data-appkey="LEjDKE76rhe2vq0xFNKaZYUgks0jVsfMpX0yGcEb"
+                       data-domain="{{shop.permanent_domain | escape }}"
+                       data-product-id="{{ product.id }}"
+                       data-product-models="{{ product.id }}"
+                       data-name="{{ product.title | escape }}"
+                       data-url="{{ shop.url }}{{ product.url }}"
+                       data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                       data-description="{{ product.description | escape }}"
+                       data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  </div>
+                  -->
+                </div>
+              {% endcomment %}
+              <div class="description">
+                <p>{{product.metafields.description.top_description}} <a href="#tabSection" class="learnMore smoothScroll">Learn More</a></p>
+              </div>
+
+              <script>
+                // Store inventory quantities in JS because they're no longer
+                // available directly in JS when a variant changes.
+                // Have an object that holds all potential products so it works
+                // with quick view or with multiple featured products.
+                window.inventories = window.inventories || {};
+                window.inventories['{{section_id}}'] = {};
+                                   var inv_qty = {};
+                                   {% for variant in product.variants %}
+                                   window.inventories['{{section_id}}'][{{variant.id}}] = {{ variant.inventory_quantity | default: 0 }};
+                {% endfor %}
+              </script>
+
+              {% if settings.inventory_enable %}
+
+
+              {%- assign inventory_visible = false -%}
+              {% if current_variant.inventory_management == 'shopify' %}
+              {%- assign inventory_visible = true -%}
+              {% endif %}
+              {% if current_variant.inventory_quantity <= 0 %}
+              {%- assign inventory_visible = false -%}
+              {% endif %}
+              <div
+                   id="ProductInventory-{{ section_id }}"
+                   class="product__inventory {% unless inventory_visible %}hide{% endunless %}"
+                   >
+                {% if current_variant.available %}
+                {{ 'products.product.stock_label' | t: count: current_variant.inventory_quantity }}
+                {% endif %}
+              </div>
+              {% endif %}
+
+              <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+              <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+              <hr class="hr--medium">
+
+              {% include 'product-form', section_id: section_id %}
+
+
+
+
+                {% if product.metafields.feature.icons.size > 0 %}
+
+                <div class="prodHori pdpIcons" style="margin: 0; padding: 0;">
+                  <div class="prodWrap" style="margin: 0; padding: 0;">
+                    {{ product.metafields.feature.icons }}
+                    <p class="sizeChart">{{product.metafields.sizechart.description}} <a data-remodal-target="sizeModal" href="#">{{product.metafields.sizechart.link_label}}</a></p>
+                  </div>
+                </div>
+                {% endif %}
+
+
+                {% unless section.settings.description_style == 'full' %}
+                <div class="product-single__description rte" itemprop="description">
+                  {{ product.description }}
+                </div>
+
+                {% include 'product-additional-content', section_id: section_id %}
+                {% endunless %}
+
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+        {% if section.settings.description_style == 'full' %}
+        <div class="product-single__description-full rte" itemprop="description">
+          {{ product.description }}
+        </div>
+
+
+
+        {% include 'product-additional-content', section_id: section_id %}
+        {% endif %}
+
+{% comment %}Start automatically added Judge.me widget{% endcomment %}
+  {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
+{% comment %}End automatically added Judge.me widget{% endcomment %}
+</div>
+
+      <script type="application/json" id="ProductJson-{{ section_id }}">
+      {{ product | json }}
+      </script>
+    </div>
+  </div>
+  <div class="remodal" data-remodal-id="sizeModal" data-remodal-options="hashTracking: false, closeOnOutsideClick: true">
+
+    <button data-remodal-action="close" class="remodal-close"></button>
+
+
+
+
+    <!-- Comparison Chart Table -->
+    <div class="grid-container">
+
+
+      <div class="comparison-chart-table">
+        <table>
+          <caption>Packing Dimensions</caption>
+
+          <thead>
+            <tr>
+              <th width="50%">Medium</th>
+              <th width="50%">Large</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td colspan="2" class="no-border">Unexpanded</td>
+            </tr>
+            <tr>
+              <td style="vertical-align:bottom;">
+                <div class="bag-dimensions-img">
+                  <a href="/products/medium-expandable-knackpack"><img alt="Medium Knack Backpack Unexpanded 17 Liters" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-med-bp.png?7521" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-med-bp_2x_2228e334-75d0-4a2a-b6b8-b596f45d6a1f.png?7521 2x"></a>
+                </div>
+                17 Liters
+              </td>
+              <td style="vertical-align:bottom;">
+                <div class="bag-dimensions-img">
+                  <a href="/products/large-expandable-knackpack"><img alt="Large Knack Backpack Unexpanded 22 Liters" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-lrg-bp.png?7521" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-lrg-bp_2x_45cd2cca-d9a5-4880-ba83-cac98d5c28d8.png?7521 2x"></a>
+                </div>
+                22 Liters
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="no-border">Expanded</td>
+            </tr>
+            <tr>
+              <td style="vertical-align:bottom;">
+                <div class="bag-dimensions-img">
+                  <a href="/products/medium-expandable-knackpack"><img alt="Medium Knack Backpack Expanded 31 Liters" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-med-bp-exp.png?7521" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-med-bp-exp_2x_b0f0444f-5467-4f8b-8854-56f83b40ff1f.png?7521 2x"></a>
+                </div>
+                17 L + 14 L = 31 Liters
+              </td>
+              <td style="vertical-align:bottom;">
+                <div class="bag-dimensions-img">
+                  <a href="/products/large-expandable-knackpack"><img alt="Large Knack Backpack Expanded 37 Liters" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-lrg-bp-exp.png?7521" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/cc-lrg-bp-exp_2x_441315cf-dde6-440d-aec6-5ad37acf395d.png?7521 2x"></a>
+                </div>
+                22 L + 15 L = 37 Liters
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+      <div class="comparison-chart-table">
+        <table class="additional-specs">
+          <caption>Additional Specs</caption>
+
+          <thead>
+            <tr>
+              <th width="50%">Medium</th>
+              <th width="50%">Large</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td colspan="2" class="no-border">
+                <div class="cc-icon">
+                  <img alt="Weight Icon" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-weight.png?3252" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-weight_2x_227b0821-6701-43cc-a4ef-c45db6e26b37.png?3252 2x">
+                </div>
+                <span>
+                  Weight
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                2 lb 11 oz
+              </td>
+              <td>
+                3 lb 4 oz
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="no-border">
+                <div class="cc-icon">
+                  <img alt="Laptop Icon" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-laptop.png?3252" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-laptop_2x_1910f677-0ced-4505-bca0-254730edd412.png?3252 2x">
+                </div>
+                <span>
+                  Laptop
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                15"
+              </td>
+              <td>
+                17"
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="no-border">
+                <div class="cc-icon">
+                  <img alt="Plane Overhead Icon" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-overhead.png?3252" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-overhead_2x_f7f4d4bd-bc76-4676-aa22-e3d8d91f2888.png?3252 2x">
+                </div>
+                <span>
+                  Overhead
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                All Jets
+              </td>
+              <td>
+                All Jets
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="no-border">
+                <div class="cc-icon">
+                  <img alt="Plane Under Seat Icon" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-underseat.png?3252" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-underseat_2x_ee65d8b9-a29c-40e0-b03f-3ca3581fd524.png?3252 2x">
+                </div>
+                <span>
+                  Under Seat
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                All Jets
+              </td>
+              <td>
+                Doesn't fit (when expanded)
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="no-border">
+                <div class="cc-icon">
+                  <img alt="Outfits Icon" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-outfit.png?3252" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-outfit_2x_68496d1c-cf05-4e28-ba53-560f6c8dc7bb.png?3252 2x">
+                </div>
+                <span>
+                  Outfits
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                2-3
+              </td>
+              <td>
+                3-4
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="no-border">
+                <div class="cc-icon">
+                  <img alt="Water Bottle Pocket Icon" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-bottle.png?3252" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-bottle_2x_bbe507c5-88e1-46f9-8fdd-021cec432aeb.png?3252 2x">
+                </div>
+                <span>
+                  Water Bottle Pocket
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                17 oz S'well&trade;
+              </td>
+              <td>
+                25 oz S'well&trade;
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" class="no-border">
+                <div class="cc-icon">
+                  <img alt="Tuck-Away Hip Strap Icon" src="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-strap.png?3252" srcset="https://cdn.shopify.com/s/files/1/0023/8767/3149/files/icon-strap_2x_13c745ee-7574-435d-8ab0-f4134186caf6.png?3252 2x">
+                </div>
+                <span>
+                  Tuck-Away Hip Strap
+                </span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                No
+              </td>
+              <td>
+                Yes
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+    <h2>Size Chart</h2>
+
+    <div class="sizeChartModal">
+      <div class="grid-container">
+        <div class="grid-x">
+          <div class="cell medium-12">
+            <h4>Model: 5'5"</h4>
+            {{ 'size_5.5.png' | asset_url | img_tag: 'Knack Backpacks on 5 foot 5 inch model'}}
+          </div>
+          <div class="cell medium-6 small-6">
+            <p>Medium</p>
+          </div>
+          <div class="cell medium-6 small-6">
+            <p>Large</p>
+          </div>
+        </div>
+        <div class="grid-x">
+          <div class="cell medium-12">
+            <h4>Model: 5'11"</h4>
+            {{ 'size_5.11.png' | asset_url | img_tag: 'Knack Backpacks on 5 foot 11 inch model'}}
+          </div>
+          <div class="cell medium-6 small-6">
+            <p>Medium</p>
+          </div>
+          <div class="cell medium-6 small-6">
+            <p>Large</p>
+          </div>
+        </div>
+        <div class="grid-x">
+          <div class="cell medium-12">
+            <h4>Model: 6'3"</h4>
+            {{ 'size_6.3.png' | asset_url | img_tag: 'Knack Backpacks on 6 foot 3 inch model'}}
+          </div>
+          <div class="cell medium-6 small-6">
+            <p>Medium</p>
+          </div>
+          <div class="cell medium-6 small-6">
+            <p>Large</p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+{% comment %}
+<script>
+	sswRun(function() {
+    	var sswInstaInterval = setInterval(function() {
+        	if (ssw('.ssw-fade-hover').length) {
+              	ssw('.ssw-fade-hover').each(function(index, element) {
+                  var itemBackdrop = `
+                  <div class="ssw-item-backdrop">
+                    <div class="ssw-shop-it-btn-wrapper">
+                      <span class="ssw-shop-it-btn">SHOP IT</span>
+                    </div>
+                  </div>`
+                  ssw(itemBackdrop).appendTo(ssw(element));
+                  ssw(element).find('.ssw-insta-small-tag.ssw-toggle-tooltip').remove();
+                });
+            	clearInterval(sswInstaInterval);
+            }
+        }, 1000)
+    })
+</script>
+{% endcomment %}

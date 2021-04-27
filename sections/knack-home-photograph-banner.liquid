@@ -1,0 +1,86 @@
+{% stylesheet %}
+
+{% endstylesheet %}
+
+{% javascript %}
+
+{% endjavascript %}
+
+<div class="grid-container mb-5">
+    <div class="row">
+        {% unless section.settings.image_1 == blank %}
+            <div class="col-6 col-md-3 p-4">
+                <img class="photograph" src="{{section.settings.image_1 | img_url: 'master' }}"/>
+            </div>
+        {% endunless %}
+
+        {% unless section.settings.image_2 == blank %}
+            <div class="col-6 col-md-3 p-4">
+                <img class="photograph" src="{{section.settings.image_2 | img_url: 'master' }}"/>
+            </div>
+        {% endunless %}
+
+        {% unless section.settings.image_3 == blank %}
+            <div class="col-6 col-md-3 p-4">
+                <img class="photograph" src="{{section.settings.image_3 | img_url: 'master' }}"/>
+            </div>
+        {% endunless %}
+
+        {% unless section.settings.image_4 == blank %}
+            <div class="col-6 col-md-3 p-4">
+                <img class="photograph" src="{{section.settings.image_4 | img_url: 'master' }}"/>
+            </div>
+        {% endunless %}
+    </div>
+    <div>
+        <h2>{{ section.settings.title }}</h2>
+        <div>{{ section.settings.caption }}</div>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Photograph Banner",
+    "class": "home-photograph-banner",
+    "settings": [
+
+	  {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_3",
+        "label": "Image 3"
+      },
+	  {
+        "type": "image_picker",
+        "id": "image_4",
+        "label": "Image 4"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Heading",
+        "default": "This is a heading."
+      },
+{
+        "type": "textarea",
+        "id": "caption",
+        "label": "Caption",
+        "default": "This is a caption."
+      }
+    ],
+    "presets": [{
+      "name": "Photograph Banner",
+      "category": "Version 2"
+    }]
+  }
+{% endschema %}

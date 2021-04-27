@@ -1,0 +1,79 @@
+
+<div class="featureWrap new-2col-layout">
+
+
+  <div class="grid-x grid-margin-x">
+
+    {% for block in section.blocks %}  
+
+    <div class="cell medium-6 featureImage">
+      <img width="100%"  class="lazy" data-src="{{block.settings.image | img_url: '400x'}}"/>
+      <h3>{{block.settings.title}}</h3>
+      <p>{{block.settings.description}}</p>
+    </div>
+
+
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Common Features",
+	"class": "cat-knackpacks-features",
+	"max_blocks": 10,
+    "settings": [
+                {
+                "type": "text",
+                "id": "header",
+                "label": "Header"
+                }		
+	],
+
+	"blocks": [
+		{
+          "type": "feature",
+          "name": "Common Feature",
+          "settings": [
+				{
+                "type": "text",
+                "id": "title",
+                "label": "Header",
+                "default": "Header"
+				},
+				{
+                "type": "textarea",
+                "id": "description",
+                "label": "Description",
+                "default": "Description"
+				},
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                }
+          ]
+		}
+	],
+	"presets": [
+		{
+			"name": "Common Features",
+			"category": "Staff Listing",
+			"blocks": [
+				{ "type": "feature" },
+				{ "type": "feature" }
+			]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

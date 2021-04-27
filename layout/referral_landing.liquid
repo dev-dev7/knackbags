@@ -1,0 +1,169 @@
+<!doctype html>
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ shop.locale }}"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_button }}">
+  <meta property="og:image" content="{{ 'onebaglife_facebook.png' | asset_url }}" />
+  <meta name="twitter:title" content="Expandable Day Bags - Knack">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https:{{ 'onebaglife_twitter1.png' | asset_url }}">
+  
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <style>.async-hide { opacity: 0 !important} </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>var $KL = jQuery.noConflict(true);</script>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+})(window,document.documentElement,'async-hide','dataLayer',4000,
+{'GTM-WZ4NMT5':true});</script>
+
+  {%- if settings.favicon -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+  {%- endif -%}
+
+  <!--
+  {%- include 'seo-title' -%}
+  <title>{{ seo_title }}</title>
+  -->
+  <title>Expandable Day Bags - Knack</title>
+
+  {%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  {%- include 'social-meta-tags' -%}
+  {{ 'custom-bootstrap.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'site.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'referral.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'development.scss.css' | asset_url | stylesheet_tag }}
+  {% include 'google-fonts' %}
+
+  {{ content_for_header }}
+  {%- include 'oldIE-js' -%}
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    window.theme = window.theme || {};
+    theme.settings = {
+      themeVersion: "3.1.4"
+    };
+  </script>
+  {% include 'defer-script' with 'remodal.min.js' %}
+  {% include 'defer-script' with 'vendor.js' %}
+  {% include 'defer-script' with 'password.js' %}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js' | script_tag }}
+  
+
+
+  <script type="text/javascript">
+    var _learnq = _learnq || [];
+    {% if customer %}
+    _learnq.push(['identify', {
+      '$email' : "{{customer.email}}"
+    }]);
+    {% else %}
+    {% endif %}
+
+    _learnq.push(['account', 'LrMHwS']);
+    (function () {
+      var b = document.createElement('script'); b.type = 'text/javascript'; b.async = true;
+      b.src = ('https:' == document.location.protocol ? 'https://' : 'http://') +     'a.klaviyo.com/media/js/analytics/analytics.js';
+      var a = document.getElementsByTagName('script')[0]; a.parentNode.insertBefore(b, a);
+    })();
+  </script>
+
+  <script type="text/javascript">
+    function initKlaviyoListeners() {
+      $KL("input[name='contact[email]']").off('blur');
+      $KL("input[name='contact[email]']").on('blur', function(e) {
+        e.preventDefault();
+        var email = $KL(this).val();
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://manage.kmail-lists.com/subscriptions/external/subscribe",
+          "method": "POST",
+          "headers": {
+            "content-type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache"
+          },
+          "data": {
+            "g": "P4x7qs",
+            "$fields": "$source",
+            "email": email,
+            "$email": email,
+            "$first_name": firstName,
+            "$source": "Shopify form"
+          }
+        };
+        $KL.ajax(settings).done(function (response) {
+          console.log(response);
+        });
+      });
+    }
+
+
+  </script>
+
+
+  
+
+  {% render 'shogun-head' %}
+</head>
+
+  <body>
+    
+      <a href="#LoginModal" class="js-modal-open-login-modal password-login" style="display: none !important;">
+    <span class="password__lock">
+      {% include 'icon-lock' %}
+    </span>
+    {{ 'general.password_page.password_link' | t }}
+  </a>
+  
+  <div id="LoginModal" class="modal modal--solid" style="position: inherit;">
+      <div class="modal__inner" style="margin-bottom: 0;">
+        <div class="modal__centered text-center">
+          <div class="password-form">
+            <p class="h4">{{ 'general.password_page.login_form_heading' | t }}</p>
+            {% form 'storefront_password' %}
+              {{ form.errors | default_errors }}
+              <label for="password" class="hidden-label">{{ 'general.password_page.login_form_password_label' | t }}</label>
+              <div class="input-group">
+                <input type="password" name="password" id="password" class="input-group-field" placeholder="{{ 'general.password_page.login_form_password_placeholder' | t }}" autofocus>
+                <span class="input-group-btn">
+                  <input type="submit" class="btn password-form__submit" value="{{ 'general.password_page.login_form_submit' | t }}">
+                </span>
+              </div>
+            {% endform %}
+          </div>
+          <p class="password-admin-link">
+            <small>
+              {{ 'general.password_page.admin_link_html' | t }}
+            </small>
+          </p>
+        </div>
+      </div>
+
+      <button type="button" class="modal__close js-modal-close text-link">
+        {% include 'icon-close' %}
+        <span class="icon__fallback-text">{{ 'general.accessibility.close_modal' | t | json }}</span>
+      </button>
+    </div>
+
+     	{{content_for_layout}}
+{{ 'remodal.min.js' | asset_url | script_tag }}
+{{ 'clipboard.min.js' | asset_url | script_tag }}
+{{ 'milestone-referral.js' | asset_url | script_tag }}
+{{ 'jquery.validate.min.js' | asset_url | script_tag }}
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% if section.settings.show_image %}
+  {% if section.settings.image != blank %}
+    {%- assign background_image = section.settings.image | img_url: '1800x' -%}
+  {% endif %}
+
+  <style>
+    .landing-feature-3 .image {
+      background-image: url({{ background_image }});
+      background-size: cover;
+    }
+  </style>
+{% else %}
+  <style>
+    .landing-feature-3 .image {
+      background-image: none;
+    }
+  </style>
+{% endif %}
+
+<div class="feature">
+	<div class="image fh"></div>
+</div>
+
+{% schema %}
+  {
+    "name": "Lifestyle",
+	"class": "landing-feature-3",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },	  
+{
+        "type": "header",
+        "content": "Background image"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "Enable image",
+        "default": true
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

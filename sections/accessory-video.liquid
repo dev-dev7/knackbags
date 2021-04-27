@@ -1,0 +1,47 @@
+  <script>
+    $(document).ready(function(){
+
+      $('#videoTabs .tab-label').click(function(event){
+        let selectedIndex = $('#videoTabs .tab-label').index(this);
+        $('#videoTabs .tab-label').removeClass('selected');
+        $('#videoTabs .tab-content').hide();
+        $('#videoTabs .tab-label:eq('+selectedIndex+')').addClass('selected');
+        $('#videoTabs .tab-content:eq('+selectedIndex+')').show();
+      });
+    });
+  </script>
+
+      <div id="videoTabs" class="tabs">
+        <div class="tab-labels accessoryLabels">
+        </div>
+        <div class="tab-contents">
+          <div class="tab-content">
+            <div>
+                <img src="{{ section.settings.image | img_url: 'master' }}"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Accessory Image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Accessory GIF",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

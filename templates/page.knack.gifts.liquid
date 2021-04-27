@@ -1,0 +1,70 @@
+{% comment %}
+SHOP GIFTS
+<!-- landing 2 -->
+<style>
+  div#shopify-section-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  body .page-content{
+    padding-top: 0px;
+  }
+  
+   body .custom-header{
+ 	position: absolute; 
+  }
+  
+  .header-layout{
+   	max-width: 1300px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  .site-footer > .page-width{
+    max-width: 1300px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+  
+  .main-content > .page-width{
+   	max-width: 100%; 
+    padding: 0;
+  }
+</style>
+
+{% endcomment %}
+<div class="page-width page-content">
+ <!--{% section 'knack-bags-slideshow' %} -->
+<div class="prodHori">
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell medium-6 small-12">
+		{% section 'knack-gifts-product-bottle' %}
+      </div>
+      <div class="cell medium-6 small-12">
+		{% section 'knack-gifts-product-margarita' %}
+      </div>
+      <div class="cell medium-6 small-12">
+        {% section 'knack-gifts-product-candle' %}
+      </div>
+      <div class="cell medium-6 small-12 align-self-middle">
+        {% section 'knack-bags-brand-statement' %}
+      </div>
+    </div>
+  </div>
+
+</div>
+  {% include 'breadcrumbs' %}
+  
+  
+
+</div>
+
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+  _learnq.push(['track', 'Viewed Category', 'Accessories']);
+</script>

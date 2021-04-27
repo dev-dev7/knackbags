@@ -1,0 +1,179 @@
+<style>
+  .image{
+   	background-repeat: no-repeat; 
+  }
+</style>
+
+
+    <div class="prodWrap accessoryWrap insert">
+        <h2>{{section.settings.product_heading}}</h2>
+        <span class="price">{{section.settings.product_price}}</span>
+		<div class="accessoryImages">
+          <a href="{{section.settings.product_url}}"><img class="lazy" data-src="{{section.settings.product_image_1 | img_url: '300x300'}}" width="300" height="300"/></a>
+        </div>
+      
+        <a class="btn-primary" href="{{section.settings.product_url}}">{{section.settings.product_button}}</a>
+        
+        <div class="prodDetails">
+          <p class="description">{{section.settings.product_description}}</p>     
+        </div>
+    </div>
+
+
+
+
+{% schema %}
+  {
+    "name": "Insert",
+	"class": "products",
+    "settings": [
+	{
+        "type": "header",
+        "content": "Product 1"
+      },
+	{
+        "type": "text",
+        "id": "page_heading",
+        "label": "Page Heading",
+		"default": "Meet the Knackpack"
+      },    
+	{
+        "type": "text",
+        "id": "product_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+	{
+        "type": "text",
+        "id": "product_price",
+        "label": "Price",
+		"default": "$195"
+      },
+		{
+        "type": "text",
+        "id": "product_description",
+        "label": "Description",
+		"default": "description"
+      },
+	{
+        "type": "text",
+        "id": "product_button",
+        "label": "Button",
+		"default": "button"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_1",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image_1_hover",
+        "label": "Image Hover"
+      },
+	  {
+        "type": "url",
+        "id": "product_url",
+        "label": "Link"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature1_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature1_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature1_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature2_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature2_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature2_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature3_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature3_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature3_description",
+        "label": "Description",
+		"default": "description"
+      },
+	  {
+        "type": "header",
+        "content": "Feature 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "feature4_icon",
+        "label": "Icon"
+      },
+		{
+        "type": "text",
+        "id": "feature4_heading",
+        "label": "Heading",
+		"default": "heading"
+      },
+		{
+        "type": "text",
+        "id": "feature4_description",
+        "label": "Description",
+		"default": "description"
+      }
+	]
+  }
+{% endschema %}
+    
+<script>
+$(document).ready(function(){
+  var firstImage = '';
+
+  $(".insert .accessoryImages img").hover(function() {
+       //save previous image in variable
+       firstImage  = $(this).attr('src');
+       $(this).attr('src','{{section.settings.product_image_1_hover | img_url: '300x300'}}');
+     }, function() {
+          $(this).attr('src',firstImage);
+  }); 
+ });   
+    </script>

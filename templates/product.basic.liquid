@@ -1,0 +1,137 @@
+{% render 'shogun-products', content: product %}
+{{ 'product.scss.css' | asset_url | stylesheet_tag }}
+
+{% assign tabs = product.metafields.tabs %}
+
+<!-- spurit_po-added -->
+{% include 'spurit_po-product-snippet' %}
+<!-- /spurit_po-added -->
+<div class="product-basic">
+{% section 'product-template-v2' %}
+</div>
+
+{% comment %}
+
+  
+<div style="display: none;">
+    {%- assign include_page_handle = 'feature-' | append: product.id -%}
+    {%- assign include_page = pages[include_page_handle] -%}
+    {% if include_page.title != blank %}
+      <div> {{ include_page.content }}</div>
+    {% endif %}
+</div>
+
+{% section 'covet-instagram' %}  -->
+{% endcomment %}
+
+{% assign current_url = '' %}
+
+{% if template contains 'page' %}
+    {% assign current_url = page.url %}
+{% elsif template contains 'blog' or template contains 'article' %}
+    {% assign current_url = blog.url %}
+{% elsif template contains 'collection' %}
+    {% assign current_url = collection.url %}
+{% elsif template contains 'product' %}
+    {% assign current_url = product.url %}
+{% endif %}
+
+<script type="application/ld+json">
+
+{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "brand": "Knack",
+    "name":"{{ product.title | escape }}",
+    "sku": "{{ product.selected_or_first_available_variant.sku }}",
+    "description": "{{ product.metafields.global.description_tag | strip_html | escape }}",
+    "image": "https:{{ product.featured_image | product_img_url: "large" }}",
+    "offers": {
+    "@type": "Offer",
+      "url": "{{ current_url }}",
+      "priceCurrency": "USD",
+      "price": "{{ product.price | divided_by: 1 }}"
+    }
+    }
+</script>
+
+
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    preorder: {{ 'products.product.preorder' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+
+
+    $(document).ready(function(){
+      $('#productTabs .tab-label').click(function(event){
+        let selectedIndex = $('#productTabs .tab-label').index(this);
+        $('#productTabs .tab-label').removeClass('selected');
+        $('#productTabs .tab-content').hide();
+        $('#productTabs .tab-label:eq('+selectedIndex+')').addClass('selected');
+        $('#productTabs .tab-content:eq('+selectedIndex+')').show();
+      });
+      
+    });
+
+  
+
+</script>
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
+{% comment %}
+{{product.metafields.shogun.above}}
+{% endcomment %}
+
+<div class="shogun-below">
+	{{product.metafields.shogun.below}}
+</div>
+
+
+
+{% if product.tags contains 'hide-reviews' %}
+
+{% else %}
+
+	{% section 'product-reviews' %}
+
+	{% include 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, auto_install: true %}
+
+
+{% endif %}
+
+
+

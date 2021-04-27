@@ -1,0 +1,46 @@
+<!-- knack-bags-brand-statement -->
+
+<div class="knackPacks">
+  <div class="brandStatement">
+      <img src="{{section.settings.image | img_url: 'master'}}"/>
+      <h3>{{section.settings.title}}</h3>
+      <p>{{section.settings.statement}}</p>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Brand Statement",
+    "class": "brandStatementWrap",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "One bag. Any purpose."
+      },
+      {
+        "type": "text",
+        "id": "statement",
+        "label": "Brand Statement",
+        "default": "We design simple, intelligent bags that maximize space and flexibility so you can pack more into your life every day."
+      }
+
+    ],
+    "presets": [
+      {
+        "name": "Brand Statement",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+  _learnq.push(['track', 'Viewed Home', 'Home']);
+</script>

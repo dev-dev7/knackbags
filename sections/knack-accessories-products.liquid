@@ -1,0 +1,56 @@
+<div class="layout horizontal center mobile-stack page-width max-900">
+	<div class="flex">
+      <div class="layout vertical center full-width">
+        <img src="{{section.settings.product1_img | img_url: '300x'}}" />
+        <a class="btn-primary buy" href="{{section.settings.product1_url}}">Buy Now</a>
+      </div> 
+    </div>
+    <div class="flex">
+      <div class="layout vertical center full-width">
+        <img src="{{section.settings.product2_img | img_url: '300x'}}" />
+        <a class="btn-primary buy" href="{{section.settings.product2_url}}">Buy Now</a>
+      </div> 
+  </div>
+</div>
+{% schema %}
+  {
+  	"name": "Products",
+  	"class": "landing-products",
+  	"settings": [{
+  			"type": "header",
+  			"content": "Product 1"
+  		},
+  		{
+  			"type": "image_picker",
+  			"id": "product1_img",
+  			"label": "Image"
+  		},
+  		{
+  			"type": "url",
+  			"id": "product1_url",
+  			"label": "Link"
+  		},
+  		{
+  			"type": "header",
+  			"content": "Product 2"
+  		},
+  		{
+  			"type": "image_picker",
+  			"id": "product2_img",
+  			"label": "Image"
+  		},
+  		{
+  			"type": "url",
+  			"id": "product2_url",
+  			"label": "Link"
+  		}
+
+  	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

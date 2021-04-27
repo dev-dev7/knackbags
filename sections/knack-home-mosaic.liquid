@@ -1,0 +1,235 @@
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<!-- knack-home-mosaic -->
+<div class="grid-container mosaic-grid">
+	<div class="grid-x">
+		<div class="cell medium-6 small-12">
+			<div class="grid-x">
+				<div class="cell small-12 large-cell" style="position: relative">
+					<img class="lazy" data-src="{{ section.settings.large_image_1 | img_url: '600x600' }}" width="600" height="600">
+					<div style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;">
+						<div class="layout horizontal center full-width full-height">
+							<div class="mosaic-text">
+								<h3 class="d-none">{{ section.settings.image_1_text }}</h3>
+								<a class="d-none" href="{{ section.settings.image_1_link_url }}">{{ section.settings.image_1_link_text }}</a>
+							</div>
+						</div>
+					</div>
+                  <a href="{{ section.settings.image_1_link_url }}" class="full-width full-height" style="position: absolute; left: 0; right: 0;">
+							<span class="link-label">{{ section.settings.image_1_link_text }}</span>
+						</a>
+				</div>
+				<div class="cell small-6 filler-cell">
+					<img class="lazy" data-src="{{ section.settings.small_image_1 | img_url: '300x300' }}" width="300" height="300">
+					{% unless section.settings.small_image_1_link_url == blank %}
+						<a href="{{ section.settings.small_image_1_link_url }}" class="full-width full-height" style="position: absolute; left: 0; right: 0;">
+							<span class="link-label">{{ section.settings.small_image_1_link_text }}</span>
+						</a>
+					{% endunless %}
+				</div>
+				<div class="cell small-6 filler-cell">
+					<img class="lazy" data-src="{{ section.settings.small_image_2 | img_url: '300x300' }}" width="300" height="300">
+					{% unless section.settings.small_image_2_link_url == blank %}
+						<a href="{{ section.settings.small_image_2_link_url }}" class="full-width full-height" style="position: absolute; left: 0; right: 0;">
+							<span class="link-label">{{ section.settings.small_image_2_link_text }}</span>
+						</a>
+					{% endunless %}
+				</div>
+			</div>
+		</div>
+		<div class="cell medium-6 small-12">
+			<div class="grid-x">
+				<div class="cell small-6 filler-cell">
+					<img class="lazy" data-src="{{ section.settings.small_image_3 | img_url: '300x300' }}" width="300" height="300">
+					{% unless section.settings.small_image_3_link_url == blank %}
+						<a href="{{ section.settings.small_image_3_link_url }}" class="full-width full-height" style="position: absolute; left: 0; right: 0;">
+							<span class="link-label">{{ section.settings.small_image_3_link_text }}</span>
+						</a>
+					{% endunless %}
+				</div>
+				<div class="cell small-6 filler-cell">
+					<img class="lazy" data-src="{{ section.settings.small_image_4 | img_url: '300x300' }}" width="300" height="300">
+					{% unless section.settings.small_image_4_link_url == blank %}
+						<a href="{{ section.settings.small_image_4_link_url }}" class="full-width full-height" style="position: absolute; left: 0; right: 0;">
+							<span class="link-label">{{ section.settings.small_image_4_link_text }}</span>
+						</a>
+					{% endunless %}
+				</div>
+				<div class="cell small-12 large-cell" style="position: relative">
+					<img class="lazy" data-src="{{ section.settings.large_image_2 | img_url: '600x600' }}" width="600" height="600">
+					<div style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;">
+						<div class="layout horizontal center full-width full-height">
+							<div class="mosaic-text">
+								<h3 class="d-none">{{ section.settings.image_2_text }}</h3>
+								<div class="d-none">
+									<a href="{{ section.settings.image_2_link_url }}">{{ section.settings.image_2_link_text }}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+                  <a href="{{ section.settings.image_2_link_url }}" class="full-width full-height" style="position: absolute; left: 0; right: 0;">
+							<span class="link-label">{{ section.settings.image_2_link_text }}</span>
+						</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+	{
+	"name": "Mosaic",
+	"settings": [
+	{
+	"type": "header",
+	"content": "Large Image 1"
+	},
+
+	{
+	"type": "image_picker",
+	"id": "large_image_1",
+	"label": "Large Image 1"},
+
+	{
+	"type": "text",
+	"id": "image_1_text",
+	"label": "Image 1 Text",
+	"default": "Image 1 Text"
+	},
+	{
+	"type": "text",
+	"id": "image_1_link_text",
+	"label": "Image 1 Link Text",
+	"default": "Image 1 Link Text"
+	},
+	{
+	"type": "url",
+	"id": "image_1_link_url",
+	"label": "Image 1 Link URL"
+	},
+	{
+	"type": "header",
+	"content": "Large Image 2"
+	},
+
+	{
+	"type": "image_picker",
+	"id": "large_image_2",
+	"label": "Large Image 2"},
+	{
+	"type": "text",
+	"id": "image_2_text",
+	"label": "Image 2 Text",
+	"default": "Image 2 Text"
+	},
+	{
+	"type": "text",
+	"id": "image_2_link_text",
+	"label": "Image 2 Link Text",
+	"default": "Image 2 Link Text"
+	},
+	{
+	"type": "url",
+	"id": "image_2_link_url",
+	"label": "Image 2 Link URL"
+	},
+
+	{
+	"type": "header",
+	"content": "Small Image 1"
+	},
+
+	{
+	"type": "image_picker",
+	"id": "small_image_1",
+	"label": "Image"
+	},
+	{
+	"type": "text",
+	"id": "small_image_1_link_text",
+	"label": "Link Text"
+	},
+	{
+	"type": "url",
+	"id": "small_image_1_link_url",
+	"label": "Link URL"
+	},
+
+	{
+	"type": "header",
+	"content": "Small Image 2"
+	},
+
+
+	{
+	"type": "image_picker",
+	"id": "small_image_2",
+	"label": "Image"
+	},
+
+	{
+	"type": "text",
+	"id": "small_image_2_link_text",
+	"label": "Link Text"
+	},
+	{
+	"type": "url",
+	"id": "small_image_2_link_url",
+	"label": "Link URL"
+	},
+
+	{
+	"type": "header",
+	"content": "Small Image 3"
+	},
+
+	{
+	"type": "image_picker",
+	"id": "small_image_3",
+	"label": "Image"
+	},
+
+	{
+	"type": "text",
+	"id": "small_image_3_link_text",
+	"label": "Link Text"
+	},
+	{
+	"type": "url",
+	"id": "small_image_3_link_url",
+	"label": "Link URL"
+	},
+
+	{
+	"type": "header",
+	"content": "Small Image 4"
+	},
+
+	{
+	"type": "image_picker",
+	"id": "small_image_4",
+	"label": "Image"
+	},
+
+	{
+	"type": "text",
+	"id": "small_image_4_link_text",
+	"label": "Link Text"
+	},
+	{
+	"type": "url",
+	"id": "small_image_4_link_url",
+	"label": "Link URL"
+	}
+
+
+	],
+	"presets": [{
+	"name": "Mosaic",
+	"category": "Version 2"
+	}]
+	}
+{% endschema %}

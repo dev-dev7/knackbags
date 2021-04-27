@@ -1,0 +1,120 @@
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<br>
+
+{% form 'customer', id: 'newsletter-long-form' %}
+  {% if form.posted_successfully? %}
+<p class="font-weight-bold" style="font-size: 18px;">Thanks for joining our exclusive club.</div>
+<p class="font-weight-bold mb-4" style="font-size: 18px;">Get ready for all the benefits #OneBagLife has to offer.</div>
+<p><a class="btn-primary" href="/">shop now</a></div>
+	{% else %}
+
+  <label for="Email-{{ section_id }}" class="hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+  <input type="hidden" name="contact[tags]" value="prospect,newsletter">
+  <input type="hidden" name="contact[context]" value="{{ snippet_context }}">
+<div class="row m-0">
+  <div style="width: 100%; max-width: 420px;">
+    <div class="layout horizontal end" style="margin-bottom: 8px;">
+      <div class="flex-1">First Name:</div>
+      <div class="flex-2"><input type="text" value="{% if customer %}{{ customer.first_name }}{% endif %}" name="contact[fname]" class="input-group-field newsletter__input w-100"></div>
+    </div>
+    <div class="layout horizontal end" style="margin-bottom: 8px;">
+      <div class="flex-1">Last Name:</div>
+      <div class="flex-2"><input type="text" value="{% if customer %}{{ customer.last_name }}{% endif %}" name="contact[lname]" class="input-group-field newsletter__input w-100"></div>
+    </div>
+    <div class="layout horizontal end" style="margin-bottom: 16px;">
+      <div class="flex-1">Email: </div>
+      <div class="flex-2"><input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" name="contact[email]" class="input-group-field newsletter__input w-100" autocorrect="off" autocapitalize="off"></div>
+    </div>
+    <div class="layout horizontal">
+      <button type="submit" class="btn-primary" name="commit">
+        <span class="form__submit--large">{{ 'general.newsletter_form.submit' | t }}</span>
+        <span class="form__submit--small">
+          {{ 'general.newsletter_form.submit' | t }}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+  {% if form.errors and form.context == snippet_context %}
+    {{ form.errors | default_errors }}
+  {% endif %}
+
+
+
+{% endform %}
+
+<div class="preloader">
+  <div class="sk-circle">
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
+</div>
+
+
+<script>
+  
+  var formValidator = null;
+  
+  $(document).ready(function(){
+  	initForm();
+  });
+  
+  function initForm(){
+    let $form =  $("#newsletter-long-form");
+    
+    if($form) {
+    
+      formValidator = $form.validate({
+        rules: {
+          'contact[email]': {
+            required: true,
+            email: true
+          },
+          'contact[fname]': {
+            required: true
+          },
+          'contact[lname]': {
+            required: true
+          }        
+        },
+        submitHandler: function(form) {
+
+          try {
+
+            let $form =  $(form);
+            $form.submit();
+          } catch(e) {
+              alert('Unfortunately we were unable to add you to the email list at this time.'); 
+          }
+
+        }
+      });
+    }
+  }
+
+</script>
+

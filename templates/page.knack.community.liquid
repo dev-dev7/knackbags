@@ -1,0 +1,60 @@
+{% comment %}
+    Community
+{% endcomment %}
+<!-- landing 5 -->
+<style>
+    div#shopify-section-header {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    body .page-content{
+        padding-top: 0px;
+    }
+
+    body .custom-header{
+        position: absolute;
+    }
+
+    .header-layout{
+        max-width: 1300px;
+        padding: 0 20px;
+        margin: 0 auto;
+    }
+
+    .site-footer > .page-width{
+        max-width: 1300px;
+        padding: 0 20px;
+        margin: 0 auto;
+    }
+
+    .main-content > .page-width{
+        max-width: 100%;
+        padding: 0;
+    }
+
+</style>
+<div class="page-width page-content communityWrap">
+
+    {% include 'breadcrumbs' %}
+
+    <!--{% section 'knack-community-slideshow' %}-->
+  
+  	{% section 'knack-community-content-1' %}
+  
+  {% section 'knack-community-video' %}
+  
+  {% section 'knack-community-content-middle' %}
+  
+  <div class="grid-x align-center">
+    <div class="small-8">
+  		<hr>      
+    </div>
+  </div>
+
+  {% section 'knack-community-content-2' %}
+
+</div>

@@ -1,0 +1,81 @@
+
+<div class="featuredBlockWrap">
+  <div class="descriptionWrap">
+  <h2>{{section.settings.description}}</h2>
+  <a class="btn-primary" href="{{section.settings.product2_url}}">{{section.settings.button_label}}</a>
+  </div>
+  <div class="grid-x">
+    <div class="cell small-5 verticalBlock">
+      <div class="blockImage" style="background-image:url('{{section.settings.vertical_image | img_url: 'master' }}')"></div>
+    </div>
+    <div class="cell small-7 squareWrap">
+      <div class="grid-x">
+        <div class="cell small-6">
+          <div class="blockImage square" style="background-image:url('{{section.settings.block_image_1 | img_url: 'master' }}')"></div>
+        </div>
+        <div class="cell small-6">
+            <div class="blockImage square" style="background-image:url('{{section.settings.block_image_2 | img_url: 'master' }}')"></div>
+        </div>
+        <div class="cell small-6">
+            <div class="blockImage square" style="background-image:url('{{section.settings.block_image_3 | img_url: 'master' }}')"></div>
+        </div>
+        <div class="cell small-6">
+            <div class="blockImage square" style="background-image:url('{{section.settings.block_image_4 | img_url: 'master' }}')"></div>
+        </div>    
+      </div>
+    </div>
+  </div>
+</div>  
+{% schema %}
+  {
+    "name": "Image with text",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "description",
+        "label": "Description"
+      },
+	  {
+        "type": "image_picker",
+        "id": "vertical_image",
+        "label": "Vertical Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "block_image_1",
+        "label": "Block Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "block_image_2",
+        "label": "Block Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "block_image_3",
+        "label": "Block Image 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "block_image_4",
+        "label": "Block Image 4"
+      },
+	  {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label"
+      },
+  	  {
+  			"type": "url",
+  			"id": "button_url",
+  			"label": "Link"
+  	  }
+    ],
+    "presets": [
+      {
+        "name": "Block Images",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,25 @@
+<div class="gifWrap">
+  <div class="grid-x">
+    <div class="cell small-12">
+	<img src="{{section.settings.image | img_url: 'master' }}')"/>
+    </div>
+    </div>
+</div>  
+{% schema %}
+  {
+    "name": "Image with text",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Full Width Image",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

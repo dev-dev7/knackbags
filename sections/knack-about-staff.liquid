@@ -1,0 +1,138 @@
+<h1 class="staffHeader">{{section.settings.heading}}</h1>
+
+<div class="staffWrap">
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+      <div class="cell medium-4 small-12 featureImage">
+        <img class="lazy" width="600" data-src="{{section.settings.image_1 | img_url: '600x'}}"/>
+        <h3>{{section.settings.name_1}}</h3>
+        <span>{{section.settings.role_1}}</span>        
+      </div>
+      <div class="cell medium-4 small-12 featureImage">
+        <img class="lazy" width="600" data-src="{{section.settings.image_2 | img_url: '600x'}}"/>
+        <h3>{{section.settings.name_2}}</h3>
+        <span>{{section.settings.role_2}}</span>        
+      </div>
+    </div>    
+    </div>
+  </div>
+
+
+<div class="staffWrap"> 
+<h2 class="staffHeader">{{section.settings.staff_heading}}</h2>
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+    {% for block in section.blocks %}
+        <div class="cell medium-4 small-12 featureImage">
+    		<img class="lazy" width="600" data-src="{{block.settings.image | img_url: '600x'}}"/>
+          <h3>{{block.settings.name}}</h3>
+          <span>{{block.settings.role}}</span>
+        </div>
+      <hr>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "The Staff",
+	"class": "knack-about-staff",
+	"max_blocks": 10,
+    "settings": [
+    		{ 
+          "id": "heading", 
+          "type": "text", 
+          "label": "Heading", 
+          "default": "Title" 
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },        
+        { 
+            "type": "text",
+            "id": "name_1",
+            "label": "Name",
+            "default": "Chad Mellan"
+        },
+         { 
+            "type": "text",
+            "id": "role_1",
+            "label": "Role"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },         
+        { 
+            "type": "text",
+            "id": "name_2",
+            "label": "Name",
+            "default": "Keith Bristol"
+        },
+         { 
+            "type": "text",
+            "id": "role_2",
+            "label": "Role"
+        },  
+        { 
+          "id": "staff_heading", 
+          "type": "text", 
+          "label": "Staff Heading", 
+          "default": "Title" 
+        }                               
+	],
+
+	"blocks": [
+		{
+          "type": "member",
+          "name": "Staff Member",
+          "settings": [
+              	{	
+                "type": "text",
+                "id": "name",
+                "label": "Name",
+                "default": "name"
+                },
+				{	
+                "type": "text",
+                "id": "role",
+                "label": "Role",
+                "default": "role"
+                },
+				{
+                "type": "html",
+                "id": "bio",
+                "label": "Bio",
+                "default": "bio"
+				},
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                }
+          ]
+		}
+	],
+	"presets": [
+		{
+			"name": "Staff Blocks",
+			"category": "Staff Listing",
+			"blocks": [
+				{ "type": "member" },
+				{ "type": "member" }
+			]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

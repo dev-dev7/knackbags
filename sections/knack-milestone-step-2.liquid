@@ -1,0 +1,241 @@
+{% schema %}
+  {
+    "name": "Step 2",
+    "settings": [
+    {
+    "type": "textarea",
+    "id": "thanks",
+    "label": "Thanks Messaging",
+    "default": "Thank you for connecting!<br><br>Don’t leave your friends behind!"
+    },
+    {
+    "type": "textarea",
+    "id": "welcome_back",
+    "label": "Welcome Back Messaging",
+    "default": "Welcome back!<br><br>Don’t leave your friends behind!"
+    },
+    {
+    "type": "textarea",
+    "id": "heading",
+    "label": "Heading",
+    "default": "INVITE FRIENDS &amp; EARN PRODUCT"
+    },
+    {
+    "type": "textarea",
+    "id": "copy",
+    "label": "Share Messaging",
+    "default": "Share your personal link via email or social channel and earn Knack gear when your friends sign up."
+    },
+    {
+      "type": "text",
+      "id": "rules_link",
+      "label": "Rules Link",
+      "default": "Referral Program Rules"
+    },
+    {
+      "type": "text",
+      "id": "rules_title",
+      "label": "Rules Title",
+      "default": "Referral Program Rules"
+    },
+    {
+      "type": "html",
+      "id": "rules_content",
+      "label": "Rules Content",
+      "default": "Referral Program Rules"
+    },
+      {
+        "type": "video_url",
+        "id": "video_url_1",
+        "label": "His video link",
+        "accept": ["youtube", "vimeo"]
+      },
+        {
+        "type": "video_url",
+        "id": "video_url_2",
+        "label": "Her video link",
+        "accept": ["youtube", "vimeo"]
+      },
+        {
+        "type": "video_url",
+        "id": "video_url_3",
+        "label": "Cube video link",
+        "accept": ["youtube", "vimeo"]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+    <div id="progress_container" class="clearfix" style="display: none;">
+      <div class="contentLeft">
+          <div class="logo">
+            {{ 'knack_logo_vert.png' | asset_url | img_tag: 'Logo', 'logo' }}
+          </div>
+          <div>
+              <div id="thanksMessage">{{ section.settings.thanks }}</div>
+              <div id="welcomeBackMessage" style="display: none;"><div id="welcomeBackMessageText" class="row">{{ section.settings.welcome_back }}</div><div class="row"></div>
+                  <div id="welcomeBackMessageLogout" style="position: fixed; top: 8px; right: 16px; text-align: right; font-size: 14px;">
+                      <div class="layout horizontal mobile-stack">
+                          <div id="logoutLabel">Not you?</div><div class="no-mobile">&nbsp;</div><a id="logoutLink" style="cursor: pointer; font-weight: 500">logout</a>
+                      </div>
+                  </div>
+              </div>
+
+              <h1>{{ section.settings.heading }}</h1>
+              <p>
+                  {{ section.settings.copy }}
+              </p>
+          </div>
+          <div>
+              {{ page.content }}
+          </div>
+          <div class="formWrap">
+              <input type="text" id="vlCopyInput" class="form-control shareUrl" value="" readonly="" @focus="$event.target.select()">
+              <span class="input-group-button">
+                <button class="copyBtn" data-clipboard-target="#vlCopyInput" data-balloon="Click to copy link" data-balloon-pos="down"><i class="fas fa-copy"></i></button>
+              </span>  
+          </div>
+          <div class="social">
+            <a id="emailLink" href=""><i class="fas fa-envelope"></i></a>
+            <a id="facebookLink" class="social-link" href=""  target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a id="twitterLink" class="social-link" href="" target="_blank"><i class="fab fa-twitter"></i></a>
+          </div>
+          <div class="mobileScrollWrap">
+            <div class="mobileScroll"></div>
+            <!--<div data-vl-widget="referralCountWidget"></div>
+          	<div id="milestoneWidget" data-vl-widget="milestoneWidget"></div> -->
+            <div class="referral">
+            	<span id="referralCount"></span>
+                <p>Friends have joined. Keep inviting.</p>
+            </div>            
+          </div>
+<div id="fss-tabs" class="">
+	<div class="progress-filler" id="indicator_container" style="width: 68%; margin-left: 16%;">
+		<span id="indicator" class="progress-indicator" style="background: rgb(246, 168, 0) none repeat scroll 0% 0% !important; width: 10%; display: none;">
+		</span>
+	</div>
+	<ul class="jq-tabs services-tabs">
+	<li class="milestone-item" id="milestone10" style="width: 34%;">
+		<a style="cursor: default" href="#step1">
+			<span class="fss-step-number"><strong><em style="background: #f6a800 !important;color: #ffffff !important">10</em></strong></span>
+		</a>
+		<div class="stepgift">
+		<div class="gift-wrapper">
+		<div class="sq1" style="display: none;">
+			<img class="img-gift" alt="" src="">
+		</div>
+			<span>10 Friends Join. Earn a Medium Knack Cube.</span>
+		</div>
+		</div>
+		</li>
+		<li class="milestone-item" id="milestone20" style="width: 34%;">
+		<a style="cursor: default" href="#step2">
+		<span class="fss-step-number"><strong><em style="background: #f6a800 !important;color: #ffffff !important">20</em></strong></span>
+		</a>
+		<div class="stepgift">
+		<div class="gift-wrapper">
+		<div class="sq1" style="display: none;">
+		<img class="img-gift" alt="" src="">
+		</div>
+		<span>20 Friends Join. Earn a Large Knack Cube.</span>
+		</div>
+		</div>
+		</li>
+		<li class="milestone-item" id="milestone75" style="width: 34%;">
+		<a style="cursor: default" href="#step3"><span class="fss-step-number"><strong><em style="background: #f6a800 !important;color: #ffffff !important">75</em></strong>
+		</span>
+		</a>
+		<div class="stepgift">
+		<div class="gift-wrapper">
+		<div class="sq1" style="display: none;">
+		<img class="img-gift" alt="" src="">
+		</div>
+		<span>75 Friends Join. Earn a Medium Expandable Knack Pack.</span>
+		</div>
+		</div>
+		</li>
+		</ul>
+
+</div>           
+          
+ 	<div class="page-width">
+      <div class="align-center">
+        <div class="cell small-11">
+      <div id="videoTabs2" class="tabs">
+        <div class="tab-labels layout horizontal">
+          <div class="flex"></div>
+          <span class="tab-label selected">Pack for Him</span>
+          <div style="width: 32px"></div>
+          <span class="tab-label">Pack for Her</span>
+          <div style="width: 32px"></div>
+          <span class="tab-label">Use a Cube</span>
+          <div class="flex"></div>
+        </div>
+        <div class="tab-contents">
+          <div class="tab-content">
+            <div class="video-wrapper">
+                {% if section.settings.video_url_1 == blank %}
+                  <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% else %}
+                    {% if section.settings.video_url_1.type == "youtube" %}
+                      <iframe src="//www.youtube.com/embed/{{ section.settings.video_url_1.id }}?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                    {% if section.settings.video_url_1.type == "vimeo" %}
+                      <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_1.id }}?color={{ settings.color_button | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                {% endif %}
+            </div>
+          </div>
+          <div class="tab-content" style="display: none;">
+            <div class="video-wrapper">
+                {% if section.settings.video_url_2 == blank %}
+                  <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% else %}
+                    {% if section.settings.video_url_2.type == "youtube" %}
+                      <iframe src="//www.youtube.com/embed/{{ section.settings.video_url_2.id }}?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                    {% if section.settings.video_url_2.type == "vimeo" %}
+                      <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_2.id }}?color={{ settings.color_button | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                {% endif %}
+            </div>
+          </div>
+          <div class="tab-content" style="display: none;">
+            <div class="video-wrapper">
+                {% if section.settings.video_url_3 == blank %}
+                  <iframe src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                {% else %}
+                    {% if section.settings.video_url_3.type == "youtube" %}
+                      <iframe src="//www.youtube.com/embed/{{ section.settings.video_url_3.id }}?rel=0&showinfo=0&vq=720" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                    {% if section.settings.video_url_3.type == "vimeo" %}
+                      <iframe src="//player.vimeo.com/video/{{ section.settings.video_url_3.id }}?color={{ settings.color_button | remove: "#" }}&byline=0&portrait=0&badge=0" width="850" height="480" frameborder="0" allowfullscreen></iframe>
+                    {% endif %}
+                {% endif %}
+            </div>
+          </div>          
+        </div>
+        
+      </div>
+        </div>
+        <a class="rules" data-remodal-target="modal" href="#">{{ section.settings.rules_link }}</a>
+      </div>
+  </div>         
+      </div>      
+
+    </div>
+
+
+<div class="remodal" data-remodal-id="modal"
+  data-remodal-options="hashTracking: false, closeOnOutsideClick: true">
+
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h4>{{ section.settings.rules_title }}</h4>
+  <p>{{ section.settings.rules_content }}</p>
+</div>

@@ -1,0 +1,48 @@
+<!-- TrustBox script --> <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script> <!-- End TrustBox script -->
+<div class="page-width page-content">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell large-10 large-offset-1">
+        <h1 class="text-center">WE LOVE HEARING FROM KNACKPACKERS</h1>
+        <p class="reviews-desc">When we started Knack, we focused on creating backpacks that freed people from carrying multiple bags at the same time.  Since our launch, we’ve heard from hundreds of people who love our concept of One Bag Life&trade; and who also give us great feedback on how we are doing.  Their honest comments help us to continue creating game-changing products and customer service. Because we find reviews from Knackpackers to be so helpful, we thought we would share them with you as you think about whether One Bag Living is right for you.</p>
+      </div>
+  </div>
+
+      <ul class="tabs inline-list text-center">
+        <li class=""><a href="#panel-med">Medium Expandable Pack</a></li>
+        <li class=""><a href="#panel-lg">Large Expandable Pack</a></li>
+        <li class=""><a href="#panel-company">Company Reviews</a></li>
+      </ul>
+
+      <div class="tabs-content">
+        <div class="" id="panel-med">
+          <div class="bp-img">
+            <img src="//cdn.shopify.com/s/files/1/0023/8767/3149/files/md_knack_gray_angle_200x300.jpg?41751">
+          </div>
+          <h2 class="text-center">Medium Expandable Pack</h2>
+          {% assign product = all_products["medium-expandable-knackpack"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+        <div class="" id="panel-lg">
+          <div class="bp-img">
+            <img src="//cdn.shopify.com/s/files/1/0023/8767/3149/files/lrg_knack_gray_angle_200x300.png?41751">
+          </div>
+          <h2 class="text-center">Large Expandable Pack</h2>
+          {% assign product = all_products["large-expandable-knackpack"] %}
+          <div class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}'>{{ product.metafields.judgeme.widget }}</div>
+        </div>
+        <div class="" id="panel-company">
+          <!-- TrustBox widget - List --> 
+          <div class="trustpilot-widget" data-locale="en-US" data-template-id="539ad60defb9600b94d7df2c" data-businessunit-id="5cf01c3b3f0ff4000123f361" data-style-height="500px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5"> 
+            <a href="https://www.trustpilot.com/review/knackbags.com" target="_blank" rel="noopener">Trustpilot</a> 
+          </div> <!-- End TrustBox widget -->
+        </div>
+      </div>
+
+    </div>
+
+</div>
+

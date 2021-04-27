@@ -1,0 +1,44 @@
+<div class="grid-container storyDetails">
+  
+  <div class="grid-x">
+    <div class="cell medium-5 small-12">
+      <img src="{{section.settings.image | img_url: '900x'}}"/>
+    </div>     
+    <div class="medium-7 small-12 align-self-middle">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="detail">
+        <p>{{ section.settings.detail }}</p>
+      </div>     
+    </div>   
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Story Details",
+    "class": "index-section",
+    "settings": [
+  {
+  "type": "text",
+  "id": "heading",
+  "label": "Heading"
+  },
+  {
+  "type": "html",
+  "id": "detail",
+  "label": "Detail"
+  },
+  {
+  "type": "image_picker",
+  "id": "image",
+  "label": "Image"
+  }
+    ],
+    "presets": [
+      {
+        "name": "Story Details",
+        "category": "Story"
+      }
+    ]
+  }
+{% endschema %}

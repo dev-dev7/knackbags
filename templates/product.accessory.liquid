@@ -1,0 +1,134 @@
+{% render 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% assign tabs = product.metafields.tabs %}
+{% section 'product-template' %}
+
+<div class="grid-container">
+  <div id="tabSection" class="grid-x">
+    <div class="cell small-12 medium-6">
+      <script>
+        $(document).ready(function(){
+
+          $('#videoTabs .tab-label').click(function(event){
+            let selectedIndex = $('#videoTabs .tab-label').index(this);
+            $('#videoTabs .tab-label').removeClass('selected');
+            $('#videoTabs .tab-content').hide();
+            $('#videoTabs .tab-label:eq('+selectedIndex+')').addClass('selected');
+            $('#videoTabs .tab-content:eq('+selectedIndex+')').show();
+          });
+        });
+      </script>
+	  <!-- metafields -->
+      <div id="videoTabs" class="tabs">
+        <div class="tab-labels accessoryLabels">
+        </div>
+        <div class="tab-contents">
+          <div class="tab-content">
+            <div>
+                <img src="{{product.metafields.detail_image.animated_gif}}"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cell small-12 medium-6">
+      <div id="productTabs" class="tabs">
+        <div class="tab-labels">
+          <span class="tab-label selected">Size</span>
+          <span class="tab-label">Materials</span>
+          <span class="tab-label">Features</span>
+        </div>
+        <div class="tab-contents accessory">
+          <div class="tab-content">{{ tabs.size }}</div>
+          <div class="tab-content" style="display: none;">{{ tabs.materials }}</div>
+          <div class="tab-content" style="display: none;">{{ tabs.features }}</div>
+        </div>
+      </div>
+    </div>    
+  </div>
+  <div id="moreInfoWrap">
+    {% section 'knack-accessories-features' %}
+    <!--<div class="grid-x">
+      <div class="cell medium-6 small-12" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+        <img src="{{product.metafields.detail_image.one}}" alt="image alt text"/>  
+        <h4>{{product.metafields.detail_image.one_title}}</h4>   
+      </div>
+      <div class="cell medium-6 small-12" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom" data-aos-delay="100">
+        <img src="{{product.metafields.detail_image.two}}"/> 
+        <h4>{{product.metafields.detail_image.two_title}}</h4>    
+      </div>          
+    </div>-->
+  </div>
+</div>
+
+
+
+<div style="display: none;">
+    {%- assign include_page_handle = 'feature-' | append: product.id -%}
+    {%- assign include_page = pages[include_page_handle] -%}
+    {% if include_page.title != blank %}
+      <div> {{ include_page.content }}</div>
+    {% endif %}
+</div>
+
+
+{% section 'product-reviews' %}
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    preorder: {{ 'products.product.preorder' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+
+
+    $(document).ready(function(){
+      $('#productTabs .tab-label').click(function(event){
+        let selectedIndex = $('#productTabs .tab-label').index(this);
+        $('#productTabs .tab-label').removeClass('selected');
+        $('#productTabs .tab-content').hide();
+        $('#productTabs .tab-label:eq('+selectedIndex+')').addClass('selected');
+        $('#productTabs .tab-content:eq('+selectedIndex+')').show();
+      });
+      
+    });
+
+  
+
+</script>
+
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
+{{product.metafields.shogun.below}}
+

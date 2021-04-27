@@ -1,0 +1,79 @@
+<h2 class="featureTitle">{{section.settings.header}}</h2>
+
+<div class="featureWrap">
+  
+  {% for block in section.blocks %}
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell medium-4 small-12 featureImage">
+  		<img src="{{block.settings.image | img_url: '400x'}}"/>
+      </div>
+      <div class="cell medium-8 small-12 align-self-middle">
+        <div class="textBlock">
+          <h3>{{block.settings.title}}</h3>
+          <p>{{block.settings.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Common Features",
+	"class": "landing-feature-2",
+	"max_blocks": 10,
+    "settings": [
+                {
+                "type": "text",
+                "id": "header",
+                "label": "Header"
+                }		
+	],
+
+	"blocks": [
+		{
+          "type": "feature",
+          "name": "Common Feature",
+          "settings": [
+				{
+                "type": "text",
+                "id": "title",
+                "label": "Header",
+                "default": "Header"
+				},
+				{
+                "type": "textarea",
+                "id": "description",
+                "label": "Description",
+                "default": "Description"
+				},
+                {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+                }
+          ]
+		}
+	],
+	"presets": [
+		{
+			"name": "Common Features",
+			"category": "Staff Listing",
+			"blocks": [
+				{ "type": "feature" },
+				{ "type": "feature" }
+			]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
